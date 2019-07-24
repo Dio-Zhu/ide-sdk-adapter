@@ -84,7 +84,7 @@ export default class BaseDataAdapter {
      *     pageList     //所属应用下的全部页面信息
      * }
      * @return {无}
-     * /
+     */
     onValueToData(options) {
     }
 }
