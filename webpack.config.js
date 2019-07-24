@@ -6,7 +6,9 @@ module.exports = {
   ],
   output: {
     path: './dist/',
-    filename: "index.js"
+    filename: "index.js",
+    library:"zzj-genadapter",
+    libraryTarget:'umd'
   },
   // devtool: 'cheap-module-eval-source-map',
   module: {
@@ -45,8 +47,18 @@ module.exports = {
   //     })
   // ],
   // externals: {
-  //   'react': 'React',
-  //   'react-dom': 'ReactDOM',
+  //     react: {
+  //         root: 'React',
+  //         commonjs2: 'react',
+  //         commonjs: 'react',
+  //         amd: 'react',
+  //     },
+  //     'react-dom': {
+  //         root: 'ReactDOM',
+  //         commonjs2: 'react-dom',
+  //         commonjs: 'react-dom',
+  //         amd: 'react-dom',
+  //     }
   // },
   resolve: {
     extensions: ['', '.js', '.jsx']
