@@ -5,11 +5,11 @@ import MetaType from './MetaType';
  * 基础事件转换适配器
  */
 export default class EventAdapter extends BaseDataAdapter{
-    // constructor(primaryKey){
-    //     super(primaryKey);
-    // }
     //--------------生命周期方法--------------------
-    //配置页面的元数据
+    /**
+     * @desc 参考 BaseDataAdapter
+     * @param options
+     */
     onPageMetas(options){
         var metas =[{
             name: 'onClick',
@@ -21,12 +21,25 @@ export default class EventAdapter extends BaseDataAdapter{
         return metas;
     }
 
-    //配置页面的属性
+    /**
+     * @desc 参考 BaseDataAdapter
+     * @param options
+     */
     onPageProps(options){
 
     }
 
-    //数据转换为值的适配
+    /**
+     * @desc 参考 BaseDataAdapter
+     * @param options
+     */
+    onCreateData(options){
+    }
+
+    /**
+     * @desc 参考 BaseDataAdapter
+     * @param options
+     */
     onDataToValue(options){
         var {formMeta,tplNode,tplTree} = options;
         var newFormData = {};
@@ -43,7 +56,10 @@ export default class EventAdapter extends BaseDataAdapter{
         return newFormData;
     }
 
-    //值转换为数据的适配
+    /**
+     * @desc 参考 BaseDataAdapter
+     * @param options
+     */
     onValueToData(options){
         var {formMeta,formData,tplNode,tplTree} = options;
         for(var i=0;i<formMeta.length;i++) {

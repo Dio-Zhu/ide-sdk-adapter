@@ -1,44 +1,50 @@
 import BaseDataAdapter from './BaseDataAdapter';
 import PropMeta from './PropMeta';
-import PropValues from './PropValues';
-import PropToValues from './PropToValues';
+import PropDataToValue from './PropDataToValue';
+import PropValueToData from './PropValueToData';
 /**
- * 基础属性转换适配器
+ * 属性转换适配器
  */
 export default class PropAdapter extends BaseDataAdapter{
-    // constructor(primaryKey){
-    //     super(primaryKey);
-    // }
     //--------------生命周期方法--------------------
-    //配置页面的元数据
+    /**
+     * @desc 参考 BaseDataAdapter
+     * @param options
+     */
     onPageMetas(options){
         return PropMeta(options);
     }
 
-    //配置页面的属性
+    /**
+     * @desc 参考 BaseDataAdapter
+     * @param options
+     */
     onPageProps(options){
 
     }
 
-    //数据转换为值的适配
+    /**
+     * @desc 参考 BaseDataAdapter
+     * @param options
+     */
+    onCreateData(options){
+    }
+
+    /**
+     * @desc 参考 BaseDataAdapter
+     * @param options
+     */
     onDataToValue(options){
-        return PropValues(options);
+        return PropDataToValue(options);
     }
 
-    //值转换为数据的适配
+    /**
+     * @desc 参考 BaseDataAdapter
+     * @param options
+     */
     onValueToData(options){
-        PropToValues(options);
+        PropValueToData(options);
     }
 
-    // /**
-    //  *  当前数据节点构建时的回调
-    //  *  @param options:{
-    //  *      tplTree - 当前树结构
-    //  *      tplNode - 当前即将添加的新节点对象
-    //  *      tplParentNode - 当前新节点对应的父节点对象
-    //  *     }
-    //  */
-    // onCreateData(options){
-    // }
 
 }

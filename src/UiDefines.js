@@ -1,3 +1,6 @@
+/**
+ * 一套组件定义
+ */
 export default class UiDefines{
     constructor(){
         this.UiType = {};
