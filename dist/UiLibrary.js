@@ -30,9 +30,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  * 定义一套适配的组件库
  */
 var UiLibrary = function () {
-    function UiLibrary() {
+    /**
+     * 构建一套组件库的适配套件
+     * @param libraryName   组件库标识名
+     * @param libraryVer    组件库版本号
+     */
+    function UiLibrary(libraryName, libraryVer) {
         _classCallCheck(this, UiLibrary);
 
+        this.libraryName = libraryName;
+        this.libraryVer = libraryVer;
         this.uiDefines = new _UiDefines2.default();
         this.propAdapters = {};
         this.eventAdapters = {};
@@ -80,19 +87,14 @@ var UiLibrary = function () {
          */
 
     }, {
-        key: "getDefines",
-        value: function getDefines() {
-            return this.uiDefines;
-        }
+        key: "addPropAdapter",
+
 
         /**
          * 添加属性适配类
          * @param primaryKey
          * @param AdapterClass 继承于PropAdapter的类
          */
-
-    }, {
-        key: "addPropAdapter",
         value: function addPropAdapter(primaryKey, AdapterClass) {
             if (typeof AdapterClass == 'function') {
                 var adapter = new AdapterClass(primaryKey);
@@ -207,6 +209,56 @@ var UiLibrary = function () {
         key: "removeViewAdapter",
         value: function removeViewAdapter(primaryKey) {
             delete this.viewAdapters[primaryKey];
+        }
+
+        /**
+         * 获取全部属性适配实例
+         * @return {*}
+         */
+
+    }, {
+        key: "UiDefines",
+        get: function get() {
+            return this.uiDefines;
+        }
+    }, {
+        key: "PropAdapters",
+        get: function get() {
+            var adapters = [];
+            for (var key in this.propAdapters) {
+                adapters.push(this.propAdapters[key]);
+            }
+            return adapters;
+        }
+
+        /**
+         * 获取全部事件适配实例
+         * @return {*}
+         */
+
+    }, {
+        key: "EventAdapters",
+        get: function get() {
+            var adapters = [];
+            for (var key in this.eventAdapters) {
+                adapters.push(this.eventAdapters[key]);
+            }
+            return adapters;
+        }
+
+        /**
+         * 获取全部视图适配实例
+         * @return {*}
+         */
+
+    }, {
+        key: "ViewAdapters",
+        get: function get() {
+            var adapters = [];
+            for (var key in this.viewAdapters) {
+                adapters.push(this.viewAdapters[key]);
+            }
+            return adapters;
         }
     }]);
 

@@ -1,6 +1,6 @@
 {
   "name": "zzj-genadapter",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "可视化界面配置的适配器",
   "main": "dist/index.js",
   "scripts": {

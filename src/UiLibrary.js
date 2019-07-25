@@ -6,7 +6,14 @@ import ViewAdapter from "./ViewAdapter";
  * 定义一套适配的组件库
  */
 export default class UiLibrary{
-    constructor(){
+    /**
+     * 构建一套组件库的适配套件
+     * @param libraryName   组件库标识名
+     * @param libraryVer    组件库版本号
+     */
+    constructor(libraryName,libraryVer){
+        this.libraryName = libraryName;
+        this.libraryVer = libraryVer;
         this.uiDefines = new UiDefines();
         this.propAdapters = {};
         this.eventAdapters = {};
@@ -42,7 +49,7 @@ export default class UiLibrary{
     /**
      * 获取全部组件的定义
      */
-    getDefines(){
+    get UiDefines(){
         return this.uiDefines;
     }
 
@@ -141,5 +148,41 @@ export default class UiLibrary{
      */
     removeViewAdapter(primaryKey){
         delete this.viewAdapters[primaryKey];
+    }
+
+    /**
+     * 获取全部属性适配实例
+     * @return {*}
+     */
+    get PropAdapters(){
+        let adapters = [];
+        for(let key in this.propAdapters){
+            adapters.push(this.propAdapters[key]);
+        }
+        return adapters;
+    }
+
+    /**
+     * 获取全部事件适配实例
+     * @return {*}
+     */
+    get EventAdapters(){
+        let adapters = [];
+        for(let key in this.eventAdapters){
+            adapters.push(this.eventAdapters[key]);
+        }
+        return adapters;
+    }
+
+    /**
+     * 获取全部视图适配实例
+     * @return {*}
+     */
+    get ViewAdapters(){
+        let adapters = [];
+        for(let key in this.viewAdapters){
+            adapters.push(this.viewAdapters[key]);
+        }
+        return adapters;
     }
 }
