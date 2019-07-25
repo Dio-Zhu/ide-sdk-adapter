@@ -138,6 +138,7 @@ var UiLibrary = function () {
                 var adapter = new AdapterClass(primaryKey);
                 if (adapter instanceof _ViewAdapter2.default) {
                     this.viewAdapters[primaryKey] = adapter;
+                    return;
                 }
             }
             console.warn('addEventAdapter fail ,that is not ViewAdapter class!');

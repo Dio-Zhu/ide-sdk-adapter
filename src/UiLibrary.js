@@ -95,6 +95,7 @@ export default class UiLibrary{
             let adapter = new AdapterClass(primaryKey);
             if(adapter instanceof ViewAdapter){
                 this.viewAdapters[primaryKey] = adapter;
+                return;
             }
         }
         console.warn('addEventAdapter fail ,that is not ViewAdapter class!');
