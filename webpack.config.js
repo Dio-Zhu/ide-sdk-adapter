@@ -1,23 +1,26 @@
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
 module.exports = {
-  entry: [
-    './src/index.js'
-  ],
+  entry: path.resolve(__dirname, 'src/index'),
   output: {
-    path: './dist/',
+    path: path.resolve(__dirname, 'dist'),
     filename: "genadapter.js",
     library:"GenAdapter",
     libraryTarget:'umd'
   },
   // devtool: 'cheap-module-eval-source-map',
   module: {
-    loaders: [
-      {
-        test: /\.(js|jsx)?$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: 'babel'
-      }
-    ]
+      rules: [
+          {
+              test: /\.(js|jsx)$/,
+              use: {
+                  loader: 'babel-loader',
+                  options: {
+                      presets: ['env', 'es2015', 'stage-0']
+                  }
+              }
+          }
+      ]
   },
   // plugins:[
   //     new webpack.optimize.UglifyJsPlugin({
@@ -38,7 +41,7 @@ module.exports = {
   //         amd: 'react-dom',
   //     }
   // },
-  resolve: {
-    extensions: ['', '.js', '.jsx']
-  }
+  // resolve: {
+  //   extensions: ['', '.js', '.jsx']
+  // }
 };
