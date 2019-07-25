@@ -76,6 +76,16 @@ var UiLibrary = function () {
         }
 
         /**
+         * 获取全部组件的定义
+         */
+
+    }, {
+        key: "getDefines",
+        value: function getDefines() {
+            return this.uiDefines;
+        }
+
+        /**
          * 添加属性适配类
          * @param primaryKey
          * @param AdapterClass 继承于PropAdapter的类
