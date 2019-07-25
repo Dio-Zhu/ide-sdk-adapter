@@ -40,6 +40,13 @@ export default class UiLibrary{
     }
 
     /**
+     * 获取全部组件的定义
+     */
+    getDefines(){
+        return this.uiDefines;
+    }
+
+    /**
      * 添加属性适配类
      * @param primaryKey
      * @param AdapterClass 继承于PropAdapter的类
