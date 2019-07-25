@@ -28,6 +28,10 @@ var _UiDefines = require('./UiDefines');
 
 var _UiDefines2 = _interopRequireDefault(_UiDefines);
 
+var _UiLibrary = require('./UiLibrary');
+
+var _UiLibrary2 = _interopRequireDefault(_UiLibrary);
+
 var _LogicUtils = require('./LogicUtils');
 
 var _LogicUtils2 = _interopRequireDefault(_LogicUtils);
@@ -46,6 +50,7 @@ module.exports = {
     EventAdapter: _EventAdapter2.default,
     PluginAdapter: _PluginAdapter2.default,
     UiDefines: _UiDefines2.default,
+    UiLibrary: _UiLibrary2.default,
     MetaType: _MetaType2.default,
     LogicUtils: _LogicUtils2.default
 };
