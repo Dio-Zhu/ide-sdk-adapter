@@ -4,8 +4,8 @@
   "description": "集成可视化界面设计器的适配框架",
   "main": "dist/genadapter.js",
   "scripts": {
-    "cnpm": "npm config set registry https://registry.npm.taobao.org",
-    "cnpm-clear": "npm config delete registry",
+    "reg-cn": "npm config set registry https://registry.npm.taobao.org",
+    "clear-cn": "npm config delete registry",
     "clean-dist": "rimraf lib dist coverage",
     "build-babel": "rimraf lib dist coverage && babel ./src --out-dir ./dist",
     "build-min": "webpack --display-error-details --progress --colors -p --config webpack.config.js",
