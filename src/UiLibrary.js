@@ -2,6 +2,7 @@ import UiDefines from "./UiDefines";
 import PropAdapter from "./PropAdapter";
 import EventAdapter from "./EventAdapter";
 import ViewAdapter from "./ViewAdapter";
+import GlobalAdapter from "./GlobalAdapter";
 /**
  * 定义一套适配的组件库
  */
@@ -202,10 +203,10 @@ export default class UiLibrary{
      * @param primaryKey
      * @return {*}
      */
-    setGlobalAdapter(GlobalAdapter){
-        if(typeof GlobalAdapter == 'function') {
-            let adapter = new GlobalAdapter();
-            if(adapter instanceof ViewAdapter){
+    setGlobalAdapter(globalAdapterClass){
+        if(typeof globalAdapterClass == 'function') {
+            let adapter = new globalAdapterClass();
+            if(adapter instanceof GlobalAdapter){
                 this.globalAdapter = adapter;
                 return;
             }
