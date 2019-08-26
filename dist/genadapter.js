@@ -978,6 +978,10 @@ var _PluginAdapter = __webpack_require__(13);
 
 var _PluginAdapter2 = _interopRequireDefault(_PluginAdapter);
 
+var _GlobalAdapter = __webpack_require__(14);
+
+var _GlobalAdapter2 = _interopRequireDefault(_GlobalAdapter);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 module.exports = {
@@ -987,6 +991,7 @@ module.exports = {
     PropAdapter: _PropAdapter2.default,
     EventAdapter: _EventAdapter2.default,
     PluginAdapter: _PluginAdapter2.default,
+    GlobalAdapter: _GlobalAdapter2.default,
     UiDefines: _UiDefines2.default,
     UiLibrary: _UiLibrary2.default,
     MetaType: _MetaType2.default,
@@ -1238,8 +1243,15 @@ var UiLibrary = function () {
 
     }, {
         key: "setGlobalAdapter",
-        value: function setGlobalAdapter(globalAdapter) {
-            this.globalAdapter = globalAdapter;
+        value: function setGlobalAdapter(GlobalAdapter) {
+            if (typeof GlobalAdapter == 'function') {
+                var adapter = new GlobalAdapter();
+                if (adapter instanceof _ViewAdapter2.default) {
+                    this.globalAdapter = adapter;
+                    return;
+                }
+            }
+            console.warn('setGlobalAdapter fail ,that is not GlobalAdapter class!');
         }
     }, {
         key: "UiDefines",
@@ -1383,6 +1395,62 @@ var PluginAdapter = function (_BaseDataAdapter) {
 }(_BaseDataAdapter3.default);
 
 exports.default = PluginAdapter;
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * 全局性的逻辑适配器
+ */
+var GlobalAdapter = function () {
+  function GlobalAdapter() {
+    _classCallCheck(this, GlobalAdapter);
+  }
+
+  _createClass(GlobalAdapter, [{
+    key: "onViewMenus",
+
+
+    /**
+     * 构建组件的分组选择菜单列表
+     * @param options
+     * @return array 返回数据格式要求如下：
+     * [
+     * {
+     *   uititle:"基础",  //分组名称
+     *   uiicon: 'tag',  //分组图标
+     *   children: [//本分组下的组件集合
+     *     {
+     *       uitype:'Button',  //组件标识
+     *       uititle:'按钮',   //组件名称
+     *       uiicon:'',       //组件图标
+     *       uidefault:''     //组件缺省配置
+     *     },
+     *     ...//本分组下的更多其它组件
+     *   ]
+     * },
+     * ...  //更多其它分组
+     * ]
+     */
+    value: function onViewMenus(options) {}
+  }]);
+
+  return GlobalAdapter;
+}();
+
+exports.default = GlobalAdapter;
 
 /***/ })
 /******/ ]);

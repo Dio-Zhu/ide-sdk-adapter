@@ -202,7 +202,14 @@ export default class UiLibrary{
      * @param primaryKey
      * @return {*}
      */
-    setGlobalAdapter(globalAdapter){
-        this.globalAdapter = globalAdapter;
+    setGlobalAdapter(GlobalAdapter){
+        if(typeof GlobalAdapter == 'function') {
+            let adapter = new GlobalAdapter();
+            if(adapter instanceof ViewAdapter){
+                this.globalAdapter = adapter;
+                return;
+            }
+        }
+        console.warn('setGlobalAdapter fail ,that is not GlobalAdapter class!');
     }
 }
