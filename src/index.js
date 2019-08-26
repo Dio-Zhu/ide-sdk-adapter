@@ -8,6 +8,7 @@ import UiDefines from './UiDefines';
 import UiLibrary from './UiLibrary';
 import LogicUtils from './LogicUtils';
 import PluginAdapter from './PluginAdapter';
+import GlobalAdapter from './GlobalAdapter';
 
 module.exports = {
     BaseDataAdapter,
@@ -16,6 +17,7 @@ module.exports = {
     PropAdapter,
     EventAdapter,
     PluginAdapter,
+    GlobalAdapter,
     UiDefines,
     UiLibrary,
     MetaType,
