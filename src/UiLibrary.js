@@ -18,6 +18,7 @@ export default class UiLibrary{
         this.propAdapters = {};
         this.eventAdapters = {};
         this.viewAdapters = {};
+        this.globalAdapter = null;
     }
     /**
      * 添加一个组件的定义
@@ -185,5 +186,23 @@ export default class UiLibrary{
             adapters.push(this.viewAdapters[key]);
         }
         return adapters;
+    }
+
+
+    /**
+     * 获取全局适配器
+     * @param primaryKey
+     * @return {*}
+     */
+    getGlobalAdapter(){
+        return this.globalAdapter;
+    }
+    /**
+     * 设置全局适配器
+     * @param primaryKey
+     * @return {*}
+     */
+    setGlobalAdapter(globalAdapter){
+        this.globalAdapter = globalAdapter;
     }
 }
