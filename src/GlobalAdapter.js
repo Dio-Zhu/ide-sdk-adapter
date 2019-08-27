@@ -33,7 +33,7 @@ export default class GlobalAdapter{
      * @param options {
      *     data:object //需要解析的json数据对象
      * }
-     * @return string //返回生成的源码
+     * @return string //返回生成的源码字符串
      */
     onSourceCodes(options){
 
