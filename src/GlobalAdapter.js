@@ -27,4 +27,15 @@ export default class GlobalAdapter{
     onViewMenus(options){
 
     }
+
+    /**
+     * 解析需要显示的源码内容
+     * @param options {
+     *     data:object //需要解析的json数据对象
+     * }
+     * @return string //返回生成的源码
+     */
+    onSourceCodes(options){
+
+    }
 }
