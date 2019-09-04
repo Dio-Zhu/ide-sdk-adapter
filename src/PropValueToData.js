@@ -25,6 +25,7 @@ module.exports = function(options){
     var {formMeta,formData,tplNode,tplTree} = options;
     for(var i=0;i<formMeta.length;i++) {
         var meta = formMeta[i];
+        if(!meta)continue;
         if(!(meta.name in formData))continue;
         var value = formData[meta.name];
         value = strTrim(value);//去除前后多余空格

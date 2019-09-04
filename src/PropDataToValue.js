@@ -3,6 +3,7 @@ module.exports = function(options){
     var newFormData = {};
     for(var i=0;i<formMeta.length;i++){
         var meta = formMeta[i];
+        if(!meta)continue;
         switch (meta.name) {
             case "specialTag":{
                 if(tplNode[meta.name]!==undefined) {
