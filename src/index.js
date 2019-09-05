@@ -7,6 +7,7 @@ import MetaType from './MetaType';
 import UiDefines from './UiDefines';
 import UiLibrary from './UiLibrary';
 import LogicUtils from './LogicUtils';
+import ObjectUtils from './ObjectUtils';
 import PluginAdapter from './PluginAdapter';
 import GlobalAdapter from './GlobalAdapter';
 
@@ -21,5 +22,6 @@ module.exports = {
     UiDefines,
     UiLibrary,
     MetaType,
-    LogicUtils
+    LogicUtils,
+    ObjectUtils
 };

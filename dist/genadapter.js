@@ -1053,7 +1053,11 @@ var _LogicUtils = __webpack_require__(9);
 
 var _LogicUtils2 = _interopRequireDefault(_LogicUtils);
 
-var _PluginAdapter = __webpack_require__(14);
+var _ObjectUtils = __webpack_require__(14);
+
+var _ObjectUtils2 = _interopRequireDefault(_ObjectUtils);
+
+var _PluginAdapter = __webpack_require__(15);
 
 var _PluginAdapter2 = _interopRequireDefault(_PluginAdapter);
 
@@ -1074,7 +1078,8 @@ module.exports = {
     UiDefines: _UiDefines2.default,
     UiLibrary: _UiLibrary2.default,
     MetaType: _MetaType2.default,
-    LogicUtils: _LogicUtils2.default
+    LogicUtils: _LogicUtils2.default,
+    ObjectUtils: _ObjectUtils2.default
 };
 
 /***/ }),
@@ -1389,6 +1394,74 @@ exports.default = UiLibrary;
 
 /***/ }),
 /* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+/**
+ * 对象操作工具
+ */
+var ObjectUtils = {
+    /**
+     * 获取对象的全部属性
+     * @param object
+     * @return {Array:string}
+     */
+    allKeys: function allKeys(object) {
+        var result = [];
+        if (Object.keys) {
+            result = Object.keys(object);
+        } else {
+            for (var key in object) {
+                if (object.hasOwnProperty(key)) {
+                    result.push(object[key]);
+                }
+            }
+        }
+        return result;
+    },
+    /**
+     * 获取对象中包含指定keys的属性集合(交集)
+     * @param object
+     * @param keys {Array:string}
+     * @return {Array:string}
+     */
+    includeKeys: function includeKeys(object, keys) {
+        var result = [];
+        if (!keys || keys.length == 0) return result;
+        for (var key in object) {
+            if (object.hasOwnProperty(key) && keys.indexOf(key) !== -1) {
+                result.push(object[key]);
+            }
+        }
+        return result;
+    },
+    /**
+     * 获取对象中排除指定keys的属性集合
+     * @param object
+     * @param keys {Array:string}
+     * @return {Array:string}
+     */
+    excludeKeys: function excludeKeys(object, keys) {
+        var result = [];
+        if (!keys || keys.length == 0) return ObjectUtils.allKeys(object);
+        for (var key in object) {
+            if (object.hasOwnProperty(key) && keys.indexOf(key) === -1) {
+                result.push(object[key]);
+            }
+        }
+        return result;
+    }
+};
+
+exports.default = ObjectUtils;
+
+/***/ }),
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
