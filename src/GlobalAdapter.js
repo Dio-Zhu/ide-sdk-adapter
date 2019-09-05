@@ -24,32 +24,28 @@ export default class GlobalAdapter{
      * ...  //更多其它分组
      * ]
      */
-    onViewMenus(options){
-
-    }
+    onViewMenus(options){}
 
     /**
      * 解析需要显示的源码内容
-     * @param options {
+     * @param options
+     * {
      *     data:object //需要解析的json数据对象
      * }
      * @return string //返回生成的源码字符串
      */
-    onSourceCodes(options){
-
-    }
+    onSourceCodes(options){}
 
     /**
      * 获取全部组件项与可用子组件的关系
      * @param options
      * @return object
-     * 格式要求：{
+     * 格式要求：
+     * {
      *     'uiTypeA':['uiTypeSub1','uiTypeSub2',...],
      *     'uiTypeB':['uiTypeSub1','uiTypeSub3',...],
      *     ...
      * }
      */
-    onUiSubset(options){
-
-    }
+    onUiSubset(options){}
 }
