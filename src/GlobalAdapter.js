@@ -38,4 +38,12 @@ export default class GlobalAdapter{
     onSourceCodes(options){
 
     }
+
+    /**
+     * 获取全部组件项与可用子组件的关系
+     * @param options
+     */
+    onUiSubset(options){
+
+    }
 }

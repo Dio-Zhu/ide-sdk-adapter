@@ -1,6 +1,6 @@
 {
   "name": "zzj-genadapter",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "description": "集成可视化界面设计器的适配框架",
   "main": "dist/genadapter.js",
   "scripts": {

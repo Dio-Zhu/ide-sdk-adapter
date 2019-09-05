@@ -544,6 +544,7 @@ module.exports = function (options) {
     var newFormData = {};
     for (var i = 0; i < formMeta.length; i++) {
         var meta = formMeta[i];
+        if (!meta) continue;
         switch (meta.name) {
             case "specialTag":
                 {
@@ -607,6 +608,7 @@ module.exports = function (options) {
 
     for (var i = 0; i < formMeta.length; i++) {
         var meta = formMeta[i];
+        if (!meta) continue;
         if (!(meta.name in formData)) continue;
         var value = formData[meta.name];
         value = strTrim(value); //去除前后多余空格
@@ -939,7 +941,7 @@ exports.default = UiDefines;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -950,39 +952,60 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  * 全局性的逻辑适配器
  */
 var GlobalAdapter = function () {
-  function GlobalAdapter() {
-    _classCallCheck(this, GlobalAdapter);
-  }
+    function GlobalAdapter() {
+        _classCallCheck(this, GlobalAdapter);
+    }
 
-  _createClass(GlobalAdapter, [{
-    key: "onViewMenus",
+    _createClass(GlobalAdapter, [{
+        key: "onViewMenus",
 
 
-    /**
-     * 构建组件的分组选择菜单列表
-     * @param options
-     * @return array 返回数据格式要求如下：
-     * [
-     * {
-     *   uititle:"基础",  //分组名称
-     *   uiicon: 'tag',  //分组图标
-     *   children: [//本分组下的组件集合
-     *     {
-     *       uitype:'Button',  //组件标识
-     *       uititle:'按钮',   //组件名称
-     *       uiicon:'',       //组件图标
-     *       uidefault:''     //组件缺省配置
-     *     },
-     *     ...//本分组下的更多其它组件
-     *   ]
-     * },
-     * ...  //更多其它分组
-     * ]
-     */
-    value: function onViewMenus(options) {}
-  }]);
+        /**
+         * 构建组件的分组选择菜单列表
+         * @param options
+         * @return array 返回数据格式要求如下：
+         * [
+         * {
+         *   uititle:"基础",  //分组名称
+         *   uiicon: 'tag',  //分组图标
+         *   children: [//本分组下的组件集合
+         *     {
+         *       uitype:'Button',  //组件标识
+         *       uititle:'按钮',   //组件名称
+         *       uiicon:'',       //组件图标
+         *       uidefault:''     //组件缺省配置
+         *     },
+         *     ...//本分组下的更多其它组件
+         *   ]
+         * },
+         * ...  //更多其它分组
+         * ]
+         */
+        value: function onViewMenus(options) {}
 
-  return GlobalAdapter;
+        /**
+         * 解析需要显示的源码内容
+         * @param options {
+         *     data:object //需要解析的json数据对象
+         * }
+         * @return string //返回生成的源码字符串
+         */
+
+    }, {
+        key: "onSourceCodes",
+        value: function onSourceCodes(options) {}
+
+        /**
+         * 获取全部组件项与可用子组件的关系
+         * @param options
+         */
+
+    }, {
+        key: "onUiSubset",
+        value: function onUiSubset(options) {}
+    }]);
+
+    return GlobalAdapter;
 }();
 
 exports.default = GlobalAdapter;
