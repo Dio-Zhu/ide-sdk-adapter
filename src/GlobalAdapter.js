@@ -42,6 +42,12 @@ export default class GlobalAdapter{
     /**
      * 获取全部组件项与可用子组件的关系
      * @param options
+     * @return object
+     * 格式要求：{
+     *     'uiTypeA':['uiTypeSub1','uiTypeSub2',...],
+     *     'uiTypeB':['uiTypeSub1','uiTypeSub3',...],
+     *     ...
+     * }
      */
     onUiSubset(options){
 
