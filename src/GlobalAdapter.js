@@ -37,15 +37,11 @@ export default class GlobalAdapter{
     onSourceCodes(options){}
 
     /**
-     * 获取全部组件项与可用子组件的关系
-     * @param options
-     * @return object
+     * 获取当前组件可用的子组件类型
+     * @param options {tplNode}
+     * @return array
      * 格式要求：
-     * {
-     *     'uiTypeA':['uiTypeSub1','uiTypeSub2',...],
-     *     'uiTypeB':['uiTypeSub1','uiTypeSub3',...],
-     *     ...
-     * }
+     * ['uiTypeSub1','uiTypeSub2',...]
      */
     onUiSubset(options){}
 }
