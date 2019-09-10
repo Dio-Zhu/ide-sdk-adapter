@@ -22,7 +22,9 @@ function isExistSet(object,propName,propValue){
     }
 }
 module.exports = function(options){
-    var {formMeta,formData,tplNode,tplTree} = options;
+    var {formMeta,formData,tplNode,tplTree
+        ,keepDefaultValue //是否保留默认值
+    } = options;
     for(var i=0;i<formMeta.length;i++) {
         var meta = formMeta[i];
         if(!meta)continue;
@@ -48,7 +50,9 @@ module.exports = function(options){
             default:
                 //默认值===表单项值，则不生成节点属性
                 if(meta.defaultValue===value){
-                    delete tplNode[meta.name];
+                    if(keepDefaultValue !== true){
+                        delete tplNode[meta.name];
+                    }
                 }else{
                     isExistSet(tplNode,meta.name,value);
                 }
