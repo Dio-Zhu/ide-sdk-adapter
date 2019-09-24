@@ -110,5 +110,9 @@ module.exports = {
     /**
      * Echart图表属性配置器
      */
-    EChartData: 'EChartData'
+    EChartData: 'EChartData',
+    /**
+     * 参照带入配置（仅限配套的iuap参照配置）
+     */
+    ReferLookup: 'ReferLookup'
 };
