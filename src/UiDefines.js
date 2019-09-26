@@ -36,7 +36,7 @@ export default class UiDefines{
     }
 
     /**
-     * 获得一个组件的定义
+     * 通过key获取一个组件的定义
      * @param primaryKey
      */
     get(primaryKey){
@@ -47,4 +47,37 @@ export default class UiDefines{
             uidefault:this.UiDefault[primaryKey],
         }
     }
+
+    /**
+     * 通过uitype获取一个组件的定义(找到第一个匹配的即返回)
+     * @param uitype
+     */
+    getByUiType(uitype){
+        for (let i in this.UiType){
+            if(this.UiType[i]==uitype){
+                return this.get(i);
+            }
+        }
+    }
+
+    /**
+     * 通过uitype获取一个组件的key
+     * @param uitype
+     */
+    getKeyByUiType(uitype){
+        for (let i in this.UiType){
+            if(this.UiType[i]==uitype){
+                return i;
+            }
+        }
+    }
+
+    /**
+     * 获取全部键值
+     * @return {string[]}
+     */
+    getKeys(){
+        return Object.keys(this.UiType);
+    }
+
 }
