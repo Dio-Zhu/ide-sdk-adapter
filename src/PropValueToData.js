@@ -22,14 +22,12 @@ function isExistSet(object,propName,propValue){
     }
 }
 module.exports = function(options){
-    var {formMeta,formData,tplNode,tplTree
-        ,keepDefaultValue //是否保留默认值
-    } = options;
-    for(var i=0;i<formMeta.length;i++) {
-        var meta = formMeta[i];
+    let {formMeta,formData,tplNode,tplTree,keepDefaultValue} = options;
+    for(let i=0;i<formMeta.length;i++) {
+        let meta = formMeta[i];
         if(!meta)continue;
         if(!(meta.name in formData))continue;
-        var value = formData[meta.name];
+        let value = formData[meta.name];
         value = strTrim(value);//去除前后多余空格
         switch (meta.name) {
             case "specialTag":{
@@ -48,16 +46,17 @@ module.exports = function(options){
             case "themeClassName":
             case "className":
             default:
-                //默认值===表单项值，则不生成节点属性
-                if(meta.defaultValue===value){
-                    if(keepDefaultValue !== true){
+                if(keepDefaultValue===false){//属性值=默认值则不保留此属性
+                    //默认值===表单项值，则不生成节点属性
+                    if(meta.defaultValue===value){
                         delete tplNode[meta.name];
+                    }else{
+                        isExistSet(tplNode,meta.name,value);
                     }
-                }else{
-                    isExistSet(tplNode,meta.name,value);
+                }else{//保留属性默认值
+                    tplNode[meta.name] = value;
                 }
                 break;
-
         }
     }
 };
