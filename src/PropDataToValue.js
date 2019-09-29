@@ -1,8 +1,8 @@
 module.exports = function(options){
-    var {formMeta,tplNode,tplTree} = options;
-    var newFormData = {};
-    for(var i=0;i<formMeta.length;i++){
-        var meta = formMeta[i];
+    let {formMeta,tplNode,tplTree} = options;
+    let newFormData = {};
+    for(let i=0;i<formMeta.length;i++){
+        let meta = formMeta[i];
         if(!meta)continue;
         switch (meta.name) {
             case "specialTag":{
