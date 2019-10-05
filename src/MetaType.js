@@ -114,5 +114,11 @@ module.exports = {
     /**
      * 参照带入配置（仅限配套的iuap参照配置）
      */
-    ReferLookup: 'ReferLookup'
+    ReferLookup: 'ReferLookup',
+
+    /**
+     * 带Iframe的弹窗
+     */
+    IframeModal: 'IframeModal'
+
 };
