@@ -52,8 +52,19 @@ export default class UiLibrary{
     /**
      * 获取全部组件的定义
      */
-    get UiDefines(){
+    getUiDefines(){
         return this.uiDefines;
+    }
+
+    /**
+     * 注册全部组件的定义
+     */
+    setUiDefines(uiDefines){
+        if(uiDefines instanceof UiDefines){
+            this.uiDefines = uiDefines;
+            return;
+        }
+        console.warn('setUiDefines fail ,that is not UiDefines class!');
     }
 
     /**
