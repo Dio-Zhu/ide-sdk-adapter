@@ -7,6 +7,7 @@ export default class UiDefines{
         this.UiTitle = {};
         this.UiIcon = {};
         this.UiDefault = {};
+        this.UiIsView = {};
     }
 
     /**
@@ -16,12 +17,14 @@ export default class UiDefines{
      * @param uititle       组件名称
      * @param uiicon        组件图标
      * @param uidefault     组件缺省属性
+     * @param uiisview      组件是否为视图
      */
-    add(primaryKey,uitype,uititle,uiicon,uidefault){
+    add(primaryKey,uitype,uititle,uiicon,uidefault,uiisview=true){
         this.UiType[primaryKey] = uitype;
         this.UiTitle[primaryKey] = uititle;
         this.UiIcon[primaryKey] = uiicon;
         this.UiDefault[primaryKey] = uidefault;
+        this.UiIsView[primaryKey] = uidefault;
     }
 
     /**
@@ -33,6 +36,7 @@ export default class UiDefines{
         delete this.UiTitle[primaryKey];
         delete this.UiIcon[primaryKey];
         delete this.UiDefault[primaryKey];
+        delete this.UiIsView[primaryKey];
     }
 
     /**
@@ -45,6 +49,7 @@ export default class UiDefines{
             uititle:this.UiTitle[primaryKey],
             uiicon:this.UiIcon[primaryKey],
             uidefault:this.UiDefault[primaryKey],
+            uiisview:this.UiIsView[primaryKey],
         }
     }
 
