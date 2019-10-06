@@ -19,12 +19,12 @@ export default class UiDefines{
      * @param uidefault     组件缺省属性
      * @param uiisview      组件是否为视图
      */
-    add(primaryKey,uitype,uititle,uiicon,uidefault,uiisview=true){
+    add(primaryKey,uitype,uititle,uiicon,uidefault,uiisview){
         this.UiType[primaryKey] = uitype;
         this.UiTitle[primaryKey] = uititle;
         this.UiIcon[primaryKey] = uiicon;
         this.UiDefault[primaryKey] = uidefault;
-        this.UiIsView[primaryKey] = uidefault;
+        this.UiIsView[primaryKey] = typeof uiisview == 'boolean'?uiisview:true;
     }
 
     /**

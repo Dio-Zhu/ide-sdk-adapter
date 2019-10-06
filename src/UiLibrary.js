@@ -28,9 +28,10 @@ export default class UiLibrary{
      * @param uititle       组件名称
      * @param uiicon        组件图标
      * @param uidefault     组件缺省属性
+     * @param uiisview      组件是否为视图
      */
-    addDefine(primaryKey,uitype,uititle,uiicon,uidefault){
-        this.uiDefines.add(primaryKey,uitype,uititle,uiicon,uidefault);
+    addDefine(){
+        this.uiDefines.add.apply(this.uiDefines,arguments);
     }
     /**
      * 移除一个组件的定义
