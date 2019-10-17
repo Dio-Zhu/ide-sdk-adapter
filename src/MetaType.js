@@ -56,6 +56,10 @@ module.exports = {
      */
     Json:'Json',
     /**
+     * 富文本编辑器
+     */
+    RichText:'RichText',
+    /**
      * CSS的样式配置器
      */
     CssStyle:'CssStyle',

@@ -25,4 +25,11 @@ export default class ViewAdapter extends BaseViewAdapter{
      *   @return {Object} 校验元数据视图 @link 请参考ValidMeta说明
      */
     onDataValid(options){}
+
+    /**
+     * 当数据节点被移除时的校验
+     * @param options
+     * TODO 待实现
+     */
+    onRemoveDataValid(options){}
 }

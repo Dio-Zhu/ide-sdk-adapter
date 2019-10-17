@@ -44,4 +44,29 @@ export default class GlobalAdapter{
      * ['uiTypeSub1','uiTypeSub2',...]
      */
     onUiSubset(options){}
+
+    /**
+     * TODO 待处理
+     * 新建页面时的触发的生命周期
+     * @param options
+     */
+    onCreatePage(options){
+
+    }
+
+    /**
+     * 获取当前组件可用的拖拽扩展按钮
+     * @param options
+     */
+    onDndButtons(options){
+        /**
+         * return [
+         *      {
+         *          key:''
+         *          text:'',
+         *          icon:''
+         *      }
+         * ]
+         */
+    }
 }

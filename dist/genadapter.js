@@ -265,6 +265,10 @@ module.exports = {
    */
   Json: 'Json',
   /**
+   * 富文本编辑器
+   */
+  RichText: 'RichText',
+  /**
    * CSS的样式配置器
    */
   CssStyle: 'CssStyle',
@@ -323,7 +327,13 @@ module.exports = {
   /**
    * 参照带入配置（仅限配套的iuap参照配置）
    */
-  ReferLookup: 'ReferLookup'
+  ReferLookup: 'ReferLookup',
+
+  /**
+   * 带Iframe的弹窗
+   */
+  IframeModal: 'IframeModal'
+
 };
 
 /***/ }),
@@ -437,6 +447,16 @@ var ViewAdapter = function (_BaseViewAdapter) {
   }, {
     key: "onDataValid",
     value: function onDataValid(options) {}
+
+    /**
+     * 当数据节点被移除时的校验
+     * @param options
+     * TODO 待实现
+     */
+
+  }, {
+    key: "onRemoveDataValid",
+    value: function onRemoveDataValid(options) {}
   }]);
 
   return ViewAdapter;
@@ -718,16 +738,19 @@ module.exports = function (options) {
             case "themeClassName":
             case "className":
             default:
-                //默认值===表单项值，则不生成节点属性
-                if (meta.defaultValue === value) {
-                    if (keepDefaultValue !== true) {
+                if (keepDefaultValue === false) {
+                    //属性值=默认值则不保留此属性
+                    //默认值===表单项值，则不生成节点属性
+                    if (meta.defaultValue === value) {
                         delete tplNode[meta.name];
+                    } else {
+                        isExistSet(tplNode, meta.name, value);
                     }
                 } else {
-                    isExistSet(tplNode, meta.name, value);
+                    //保留属性默认值
+                    tplNode[meta.name] = value;
                 }
                 break;
-
         }
     }
 };
@@ -966,6 +989,7 @@ var UiDefines = function () {
         this.UiTitle = {};
         this.UiIcon = {};
         this.UiDefault = {};
+        this.UiIsView = {};
     }
 
     /**
@@ -975,16 +999,18 @@ var UiDefines = function () {
      * @param uititle       组件名称
      * @param uiicon        组件图标
      * @param uidefault     组件缺省属性
+     * @param uiisview      组件是否为视图
      */
 
 
     _createClass(UiDefines, [{
-        key: "add",
-        value: function add(primaryKey, uitype, uititle, uiicon, uidefault) {
+        key: 'add',
+        value: function add(primaryKey, uitype, uititle, uiicon, uidefault, uiisview) {
             this.UiType[primaryKey] = uitype;
             this.UiTitle[primaryKey] = uititle;
             this.UiIcon[primaryKey] = uiicon;
             this.UiDefault[primaryKey] = uidefault;
+            this.UiIsView[primaryKey] = typeof uiisview == 'boolean' ? uiisview : true;
         }
 
         /**
@@ -993,28 +1019,71 @@ var UiDefines = function () {
          */
 
     }, {
-        key: "remove",
+        key: 'remove',
         value: function remove(primaryKey) {
             delete this.UiType[primaryKey];
             delete this.UiTitle[primaryKey];
             delete this.UiIcon[primaryKey];
             delete this.UiDefault[primaryKey];
+            delete this.UiIsView[primaryKey];
         }
 
         /**
-         * 获得一个组件的定义
+         * 通过key获取一个组件的定义
          * @param primaryKey
          */
 
     }, {
-        key: "get",
+        key: 'get',
         value: function get(primaryKey) {
             return {
                 uitype: this.UiType[primaryKey],
                 uititle: this.UiTitle[primaryKey],
                 uiicon: this.UiIcon[primaryKey],
-                uidefault: this.UiDefault[primaryKey]
+                uidefault: this.UiDefault[primaryKey],
+                uiisview: this.UiIsView[primaryKey]
             };
+        }
+
+        /**
+         * 通过uitype获取一个组件的定义(找到第一个匹配的即返回)
+         * @param uitype
+         */
+
+    }, {
+        key: 'getByUiType',
+        value: function getByUiType(uitype) {
+            for (var i in this.UiType) {
+                if (this.UiType[i] == uitype) {
+                    return this.get(i);
+                }
+            }
+        }
+
+        /**
+         * 通过uitype获取一个组件的key
+         * @param uitype
+         */
+
+    }, {
+        key: 'getKeyByUiType',
+        value: function getKeyByUiType(uitype) {
+            for (var i in this.UiType) {
+                if (this.UiType[i] == uitype) {
+                    return i;
+                }
+            }
+        }
+
+        /**
+         * 获取全部键值
+         * @return {string[]}
+         */
+
+    }, {
+        key: 'getKeys',
+        value: function getKeys() {
+            return Object.keys(this.UiType);
         }
     }]);
 
@@ -1097,6 +1166,35 @@ var GlobalAdapter = function () {
   }, {
     key: "onUiSubset",
     value: function onUiSubset(options) {}
+
+    /**
+     * TODO 待处理
+     * 新建页面时的触发的生命周期
+     * @param options
+     */
+
+  }, {
+    key: "onCreatePage",
+    value: function onCreatePage(options) {}
+
+    /**
+     * 获取当前组件可用的拖拽扩展按钮
+     * @param options
+     */
+
+  }, {
+    key: "onDndButtons",
+    value: function onDndButtons(options) {
+      /**
+       * return [
+       *      {
+       *          key:''
+       *          text:'',
+       *          icon:''
+       *      }
+       * ]
+       */
+    }
   }]);
 
   return GlobalAdapter;
@@ -1235,13 +1333,14 @@ var UiLibrary = function () {
      * @param uititle       组件名称
      * @param uiicon        组件图标
      * @param uidefault     组件缺省属性
+     * @param uiisview      组件是否为视图
      */
 
 
     _createClass(UiLibrary, [{
         key: "addDefine",
-        value: function addDefine(primaryKey, uitype, uititle, uiicon, uidefault) {
-            this.uiDefines.add(primaryKey, uitype, uititle, uiicon, uidefault);
+        value: function addDefine() {
+            this.uiDefines.add.apply(this.uiDefines, arguments);
         }
         /**
          * 移除一个组件的定义
@@ -1270,14 +1369,33 @@ var UiLibrary = function () {
          */
 
     }, {
-        key: "addPropAdapter",
+        key: "getUiDefines",
+        value: function getUiDefines() {
+            return this.uiDefines;
+        }
 
+        /**
+         * 注册全部组件的定义
+         */
+
+    }, {
+        key: "setUiDefines",
+        value: function setUiDefines(uiDefines) {
+            if (uiDefines instanceof _UiDefines2.default) {
+                this.uiDefines = uiDefines;
+                return;
+            }
+            console.warn('setUiDefines fail ,that is not UiDefines class!');
+        }
 
         /**
          * 添加属性适配类
          * @param primaryKey
          * @param AdapterClass 继承于PropAdapter的类
          */
+
+    }, {
+        key: "addPropAdapter",
         value: function addPropAdapter(primaryKey, AdapterClass) {
             if (typeof AdapterClass == 'function') {
                 var adapter = new AdapterClass(primaryKey);
@@ -1429,11 +1547,6 @@ var UiLibrary = function () {
                 }
             }
             console.warn('setGlobalAdapter fail ,that is not GlobalAdapter class!');
-        }
-    }, {
-        key: "UiDefines",
-        get: function get() {
-            return this.uiDefines;
         }
     }, {
         key: "PropAdapters",
