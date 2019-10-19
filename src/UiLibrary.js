@@ -21,6 +21,22 @@ export default class UiLibrary{
         this.viewAdapters = {};
         this.globalAdapter = null;
     }
+
+    /**
+     * 获取组件库标识名
+     * @return {*}
+     */
+    getName(){
+        return this.libraryName;
+    }
+
+    /**
+     * 获取组件库版本号
+     * @return {*}
+     */
+    getVersion(){
+        return this.libraryVer;
+    }
     /**
      * 添加一个组件的定义
      * @param primaryKey    主键标识
