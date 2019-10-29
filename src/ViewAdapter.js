@@ -42,30 +42,28 @@ export default class ViewAdapter extends BaseViewAdapter{
      *      tplParentNode //当前数据节点父对象
      *   }
      *
-     *  @return  [{key:'addTab',text:'添加页签',icon:'uidesign uitianjia'},...]
-     *
+     *  @return  [
+     *      {
+     *          key:'addTab',               //按钮键值
+     *          text:'添加页签',             //按钮名称
+     *          icon:'uidesign uitianjia'   //按钮图标（使用阿里字体图标库iconfont）
+     *      }
+     *      ,... //其它扩展按钮
+     *  ]
      */
-    onDataDndView(options){
-
-    }
+    onDataDndView(options){}
 
     /**
-     * 当数据节点触发动作事件时（例如：扩展按钮点击）
+     * 当数据节点触发动作事件时（例如：扩展按钮点击时）
      * @param options
      * {
-     *     tplTree,
-     *     tplNode,
-     *     actionType//动作类型
-     *     actionKey,//动作标识
+     *     tplTree,     //当前数据树
+     *     tplNode,     //当前数据节点对象
+     *     actionType,  //动作类型
+     *     actionKey,   //动作标识
+     *     openApi      //开发的API能力
      * }
-     *
-     * @return 无 或者 event
-     * {
-     *       "eventKey":"addNode", //添加节点的事件
-     *       "eventData":"Button" //任意的uitype值
-     * }
+     * @return 无
      */
-    onActionHandler(options){
-
-    }
+    onActionHandler(options){}
 }
