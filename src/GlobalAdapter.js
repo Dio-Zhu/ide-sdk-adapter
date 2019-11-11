@@ -2,6 +2,23 @@
  * 全局性的逻辑适配器
  */
 export default class GlobalAdapter{
+    /**
+     * 调用自生的方法
+     * @param funcName
+     * @param funcOptions
+     */
+    callFunction(funcName,funcOptions){
+        if(!funcName){
+            console.warn('GlobalAdapter.callFunction not funcName');
+            return;
+        }
+        let func = this[funcName];
+        if(typeof func !== 'function'){
+            console.warn('GlobalAdapter.callFunction not function:'+funcName);
+            return;
+        }
+        func.call(this,funcOptions);
+    }
 
     /**
      * 构建组件的分组选择菜单列表
@@ -51,6 +68,14 @@ export default class GlobalAdapter{
      * @param options
      */
     onCreatePage(options){
+
+    }
+
+    /**
+     * 页面数据保存时触发的生命周期
+     * @param options {tplTree}
+     */
+    onSaveData(options){
 
     }
 
