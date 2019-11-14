@@ -1,25 +1,12 @@
 /**
  * 全局性的逻辑适配器
  */
-export default class GlobalAdapter{
-    /**
-     * 调用自生的方法
-     * @param funcName
-     * @param funcOptions
-     */
-    callFunction(funcName,funcOptions){
-        if(!funcName){
-            console.warn('GlobalAdapter.callFunction not funcName');
-            return;
-        }
-        let func = this[funcName];
-        if(typeof func !== 'function'){
-            console.warn('GlobalAdapter.callFunction not function:'+funcName);
-            return;
-        }
-        func.call(this,funcOptions);
-    }
+import SuperAdapter from "./SuperAdapter";
 
+export default class GlobalAdapter extends SuperAdapter{
+    constructor(){
+        super();
+    }
     /**
      * 构建组件的分组选择菜单列表
      * @param options

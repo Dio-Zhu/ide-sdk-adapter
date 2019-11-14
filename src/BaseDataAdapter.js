@@ -1,12 +1,18 @@
 /**
  * 基础数据转换适配器
  */
-export default class BaseDataAdapter {
+import SuperAdapter from "./SuperAdapter";
+
+/**
+ * 基础数据转换器
+ */
+export default class BaseDataAdapter extends SuperAdapter{
     /**
      * @desc 构建对象
      * @param primaryKey 主键/组件标识
      */
     constructor(primaryKey) {
+        super();
         this.primaryKey = primaryKey;
     }
 
@@ -21,7 +27,8 @@ export default class BaseDataAdapter {
     //--------------生命周期方法--------------------
     /**
      * @desc 构建适配页面(元数据)
-     * @param options {
+     * @param options
+     * {
      *     tplNode,     //当前数据节点值
      *     tplTree,     //当前数据树
      *     productType, //所属产品类型
@@ -52,6 +59,21 @@ export default class BaseDataAdapter {
      *   @return {无}
      */
     onCreateData(options) {
+    }
+
+    /**
+     * @desc 数据节点位置变更时触发
+     * @param options
+     * {
+     *     tplTree, //移动后的数据树
+     *     tplNode, //移动后的节点
+     *     tplParentNode,//移动后的父节点
+     *     tplSourceNode,//移动前的节点
+     *     tplSourceParentNode,//移动前的父节点
+     * }
+     */
+    onMoveData(options){
+
     }
 
     /**

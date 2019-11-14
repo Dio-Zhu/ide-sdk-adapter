@@ -12,7 +12,14 @@ export default class ViewAdapter extends BaseViewAdapter{
      *     tplNode,     //当前数据节点对象
      *     tplTree,     //当前数据树
      * }
-     * @return {Array} 视图元数据集合 @link 请参考ViewMeta说明
+     * @return {Array} 视图元数据集合 @link 请参考ViewMeta说明如下：
+     * [
+     * {
+     *   uititle: '消息内容',
+     *   uitype: 'message',
+     *   type: 'error|warning|info|success'
+     * }
+     * ]
      */
     onDataView(options){}
 
@@ -33,6 +40,18 @@ export default class ViewAdapter extends BaseViewAdapter{
      * TODO 待实现
      */
     onRemoveDataValid(options){}
+
+    /**
+     *  @desc 当前数据节点下添加子数据节点时的校验
+     *  @param options:{
+     *     tplTree, //当前数据树
+     *     tplNode, //当前移动的节点
+     *     tplParentNode,//移动前的父节点
+     *     tplTargetParentNode,//移动后的父节点
+     *   }
+     *   @return {Object} 校验元数据视图 @link 请参考ValidMeta说明
+     */
+    onMoveDataValid(options){}
 
     /**
      * 当数据节点被选择时构建拖拽相关的视图
