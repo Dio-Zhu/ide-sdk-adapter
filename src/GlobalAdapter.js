@@ -50,11 +50,20 @@ export default class GlobalAdapter extends SuperAdapter{
     onUiSubset(options){}
 
     /**
-     * TODO 待处理
-     * 新建页面时的触发的生命周期
+     * 构建页面类型的可选列表
+     * @param options
+     * {
+     *     currApp:object //当前应用信息
+     * }
+     */
+    onPageTypes(options){
+
+    }
+    /**
+     * 新建页面时的触发的生命周期,主要用于处理缺省的页面节点数据
      * @param options
      */
-    onCreatePage(options){
+    onDefaultPageData(options){
 
     }
 
