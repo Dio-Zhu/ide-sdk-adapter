@@ -35,6 +35,10 @@ module.exports = {
      */
     Time:'Time',
     /**
+     * 打开浏览器链接
+     */
+    Link:'Link',
+    /**
      * 多行文本框
      */
     Textarea:'Textarea',
