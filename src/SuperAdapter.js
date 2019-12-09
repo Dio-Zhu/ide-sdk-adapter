@@ -1,3 +1,6 @@
+/**
+ * 所有适配器类均需要继承此超类
+ */
 export default class SuperAdapter {
     constructor(){
 

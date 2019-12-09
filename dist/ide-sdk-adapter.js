@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
 	else if(typeof exports === 'object')
-		exports["GenAdapter"] = factory();
+		exports["IdeSdkAdapter"] = factory();
 	else
-		root["GenAdapter"] = factory();
+		root["IdeSdkAdapter"] = factory();
 })(typeof self !== 'undefined' ? self : this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 13);
+/******/ 	return __webpack_require__(__webpack_require__.s = 12);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -81,7 +81,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -105,132 +105,105 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * 基础数据转换器
  */
 var BaseDataAdapter = function (_SuperAdapter) {
-    _inherits(BaseDataAdapter, _SuperAdapter);
+  _inherits(BaseDataAdapter, _SuperAdapter);
 
-    /**
-     * @desc 构建对象
-     * @param primaryKey 主键/组件标识
-     */
-    function BaseDataAdapter(primaryKey) {
-        _classCallCheck(this, BaseDataAdapter);
+  /**
+   * @desc 构建对象
+   * @param primaryKey 主键/组件标识
+   */
+  function BaseDataAdapter(primaryKey) {
+    _classCallCheck(this, BaseDataAdapter);
 
-        var _this = _possibleConstructorReturn(this, (BaseDataAdapter.__proto__ || Object.getPrototypeOf(BaseDataAdapter)).call(this));
+    var _this = _possibleConstructorReturn(this, (BaseDataAdapter.__proto__ || Object.getPrototypeOf(BaseDataAdapter)).call(this));
 
-        _this.primaryKey = primaryKey;
-        return _this;
+    _this.primaryKey = primaryKey;
+    return _this;
+  }
+
+  /**
+   * @desc 获取主键/组件标识
+   * @return {string}
+   */
+
+
+  _createClass(BaseDataAdapter, [{
+    key: "getPrimaryKey",
+    value: function getPrimaryKey() {
+      return this.primaryKey;
     }
 
+    //--------------生命周期方法--------------------
+
     /**
-     * @desc 获取主键/组件标识
-     * @return {string}
+     *  @desc 新建数据节点时触发
+     *  @param options:{
+     *      tplTree,        //当前数据树
+     *      tplNode,        //当前添加的数据节点对象
+     *      tplParentNode   //当前对应的父节点对象
+     *   }
+     *   @return {无}
      */
 
+  }, {
+    key: "onCreateData",
+    value: function onCreateData(options) {}
 
-    _createClass(BaseDataAdapter, [{
-        key: "getPrimaryKey",
-        value: function getPrimaryKey() {
-            return this.primaryKey;
-        }
+    /**
+     * @desc 数据节点位置变更时触发
+     * @param options
+     * {
+     *     tplTree, //移动后的数据树
+     *     tplNode, //移动后的节点
+     *     tplParentNode,//移动后的父节点
+     *     tplSourceNode,//移动前的节点
+     *     tplSourceParentNode,//移动前的父节点
+     * }
+     */
 
-        //--------------生命周期方法--------------------
-        /**
-         * @desc 构建适配页面(元数据)
-         * @param options
-         * {
-         *     tplNode,     //当前数据节点值
-         *     tplTree,     //当前数据树
-         *     productType, //所属产品类型
-         *     currApp,     //所属应用信息
-         *     currPage,    //所属页面信息
-         *     pageList     //所属应用下的全部页面信息
-         * }
-         * @return {Array} 元数据数组集合 @link 请参考PageMeta说明
-         */
+  }, {
+    key: "onMoveData",
+    value: function onMoveData(options) {}
 
-    }, {
-        key: "onPageMetas",
-        value: function onPageMetas(options) {}
+    /**
+     * @desc 将数据转换为配置值
+     * @param options {
+     *     formMeta,    //元数据，即 @link onPageMetas 返回的数据
+     *     tplNode,     //当前数据节点对象
+     *     tplTree,     //当前数据树
+     *     productType, //所属产品类型
+     *     currApp,     //所属应用信息
+     *     currPage,    //所属页面信息
+     *     pageList     //所属应用下的全部页面信息
+     * }
+     * @return {object} 适配页面的表单值
+     */
 
-        /**
-         * @desc 构建适配页面(属性)
-         * @param options {无}
-         * @return {object} 适配页面的属性 @link 请参考PageProp说明
-         */
+  }, {
+    key: "onDataToValue",
+    value: function onDataToValue(options) {}
 
-    }, {
-        key: "onPageProps",
-        value: function onPageProps(options) {}
+    /**
+     * @desc 将配置值转换为数据
+     * @param options {
+     *     formMeta,    //元数据，即 @link onPageMetas 返回的数据
+     *     formData,    //变更后的配置值
+     *     tplPreNode,  //上一次的数据值
+     *     tplNode,     //当前数据节点对象
+     *     tplTree,     //当前数据树
+     *     productType, //所属产品类型
+     *     currApp,     //所属应用信息
+     *     currPage,    //所属页面信息
+     *     pageList     //所属应用下的全部页面信息
+     * }
+     * @return {无}
+     */
 
-        /**
-         *  @desc 新建数据节点时触发
-         *  @param options:{
-         *      tplTree,        //当前数据树
-         *      tplNode,        //当前添加的数据节点对象
-         *      tplParentNode   //当前对应的父节点对象
-         *   }
-         *   @return {无}
-         */
+  }, {
+    key: "onValueToData",
+    value: function onValueToData(options) {}
+  }]);
 
-    }, {
-        key: "onCreateData",
-        value: function onCreateData(options) {}
-
-        /**
-         * @desc 数据节点位置变更时触发
-         * @param options
-         * {
-         *     tplTree, //移动后的数据树
-         *     tplNode, //移动后的节点
-         *     tplParentNode,//移动后的父节点
-         *     tplSourceNode,//移动前的节点
-         *     tplSourceParentNode,//移动前的父节点
-         * }
-         */
-
-    }, {
-        key: "onMoveData",
-        value: function onMoveData(options) {}
-
-        /**
-         * @desc 将数据转换为配置值
-         * @param options {
-         *     formMeta,    //元数据，即 @link onPageMetas 返回的数据
-         *     tplNode,     //当前数据节点对象
-         *     tplTree,     //当前数据树
-         *     productType, //所属产品类型
-         *     currApp,     //所属应用信息
-         *     currPage,    //所属页面信息
-         *     pageList     //所属应用下的全部页面信息
-         * }
-         * @return {object} 适配页面的表单值
-         */
-
-    }, {
-        key: "onDataToValue",
-        value: function onDataToValue(options) {}
-
-        /**
-         * @desc 将配置值转换为数据
-         * @param options {
-         *     formMeta,    //元数据，即 @link onPageMetas 返回的数据
-         *     formData,    //变更后的配置值
-         *     tplPreNode,  //上一次的数据值
-         *     tplNode,     //当前数据节点对象
-         *     tplTree,     //当前数据树
-         *     productType, //所属产品类型
-         *     currApp,     //所属应用信息
-         *     currPage,    //所属页面信息
-         *     pageList     //所属应用下的全部页面信息
-         * }
-         * @return {无}
-         */
-
-    }, {
-        key: "onValueToData",
-        value: function onValueToData(options) {}
-    }]);
-
-    return BaseDataAdapter;
+  return BaseDataAdapter;
 }(_SuperAdapter3.default);
 
 exports.default = BaseDataAdapter;
@@ -384,6 +357,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+/**
+ * 所有适配器类均需要继承此超类
+ */
 var SuperAdapter = function () {
     function SuperAdapter() {
         _classCallCheck(this, SuperAdapter);
@@ -425,7 +401,7 @@ exports.default = SuperAdapter;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -446,35 +422,35 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 var BaseViewAdapter = function (_SuperAdapter) {
-    _inherits(BaseViewAdapter, _SuperAdapter);
+  _inherits(BaseViewAdapter, _SuperAdapter);
 
-    /**
-     * 构建对象
-     * @param primaryKey 主键/组件标识
-     */
-    function BaseViewAdapter(primaryKey) {
-        _classCallCheck(this, BaseViewAdapter);
+  /**
+   * 构建对象
+   * @param primaryKey 主键/组件标识
+   */
+  function BaseViewAdapter(primaryKey) {
+    _classCallCheck(this, BaseViewAdapter);
 
-        var _this = _possibleConstructorReturn(this, (BaseViewAdapter.__proto__ || Object.getPrototypeOf(BaseViewAdapter)).call(this));
+    var _this = _possibleConstructorReturn(this, (BaseViewAdapter.__proto__ || Object.getPrototypeOf(BaseViewAdapter)).call(this));
 
-        _this.primaryKey = primaryKey;
-        return _this;
+    _this.primaryKey = primaryKey;
+    return _this;
+  }
+
+  /**
+   * 获取主键/组件标识
+   * @return {string}
+   */
+
+
+  _createClass(BaseViewAdapter, [{
+    key: "getPrimaryKey",
+    value: function getPrimaryKey() {
+      return this.primaryKey;
     }
+  }]);
 
-    /**
-     * 获取主键/组件标识
-     * @return {string}
-     */
-
-
-    _createClass(BaseViewAdapter, [{
-        key: "getPrimaryKey",
-        value: function getPrimaryKey() {
-            return this.primaryKey;
-        }
-    }]);
-
-    return BaseViewAdapter;
+  return BaseViewAdapter;
 }(_SuperAdapter3.default);
 
 exports.default = BaseViewAdapter;
@@ -630,7 +606,7 @@ exports.default = ViewAdapter;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -639,15 +615,11 @@ var _BaseDataAdapter2 = __webpack_require__(0);
 
 var _BaseDataAdapter3 = _interopRequireDefault(_BaseDataAdapter2);
 
-var _PropMeta = __webpack_require__(6);
-
-var _PropMeta2 = _interopRequireDefault(_PropMeta);
-
-var _PropDataToValue = __webpack_require__(7);
+var _PropDataToValue = __webpack_require__(6);
 
 var _PropDataToValue2 = _interopRequireDefault(_PropDataToValue);
 
-var _PropValueToData = __webpack_require__(8);
+var _PropValueToData = __webpack_require__(7);
 
 var _PropValueToData2 = _interopRequireDefault(_PropValueToData);
 
@@ -663,139 +635,75 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * 属性转换适配器
  */
 var PropAdapter = function (_BaseDataAdapter) {
-    _inherits(PropAdapter, _BaseDataAdapter);
+  _inherits(PropAdapter, _BaseDataAdapter);
 
-    function PropAdapter() {
-        _classCallCheck(this, PropAdapter);
+  function PropAdapter() {
+    _classCallCheck(this, PropAdapter);
 
-        return _possibleConstructorReturn(this, (PropAdapter.__proto__ || Object.getPrototypeOf(PropAdapter)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (PropAdapter.__proto__ || Object.getPrototypeOf(PropAdapter)).apply(this, arguments));
+  }
+
+  _createClass(PropAdapter, [{
+    key: 'onPageMetas',
+
+    //--------------生命周期方法--------------------
+    /**
+     * @desc 构建适配页面(元数据)
+     * @param options
+     * {
+     *     tplNode,     //当前数据节点值
+     *     tplTree,     //当前数据树
+     *     productType, //所属产品类型
+     *     currApp,     //所属应用信息
+     *     currPage,    //所属页面信息
+     *     pageList     //所属应用下的全部页面信息
+     * }
+     * @return {Array} 元数据数组集合 @link 请参考PageMeta说明
+     */
+    value: function onPageMetas(options) {}
+
+    /**
+     * @desc 构建适配页面(属性)
+     * @param options {无}
+     * @return {object} 适配页面的属性 @link 请参考PageProp说明
+     */
+
+  }, {
+    key: 'onPageProps',
+    value: function onPageProps(options) {}
+
+    /**
+     * @override
+     * @desc 参考 BaseDataAdapter
+     * @param options
+     */
+
+  }, {
+    key: 'onDataToValue',
+    value: function onDataToValue(options) {
+      return (0, _PropDataToValue2.default)(options);
     }
 
-    _createClass(PropAdapter, [{
-        key: 'onPageMetas',
+    /**
+     * @override
+     * @desc 参考 BaseDataAdapter
+     * @param options
+     */
 
-        //--------------生命周期方法--------------------
-        /**
-         * @desc 参考 BaseDataAdapter
-         * @param options
-         */
-        value: function onPageMetas(options) {
-            return (0, _PropMeta2.default)(options);
-        }
+  }, {
+    key: 'onValueToData',
+    value: function onValueToData(options) {
+      (0, _PropValueToData2.default)(options);
+    }
+  }]);
 
-        /**
-         * @desc 参考 BaseDataAdapter
-         * @param options
-         */
-
-    }, {
-        key: 'onPageProps',
-        value: function onPageProps(options) {}
-
-        /**
-         * @desc 参考 BaseDataAdapter
-         * @param options
-         */
-
-    }, {
-        key: 'onCreateData',
-        value: function onCreateData(options) {}
-
-        /**
-         * @desc 参考 BaseDataAdapter
-         * @param options
-         */
-
-    }, {
-        key: 'onDataToValue',
-        value: function onDataToValue(options) {
-            return (0, _PropDataToValue2.default)(options);
-        }
-
-        /**
-         * @desc 参考 BaseDataAdapter
-         * @param options
-         */
-
-    }, {
-        key: 'onValueToData',
-        value: function onValueToData(options) {
-            (0, _PropValueToData2.default)(options);
-        }
-    }]);
-
-    return PropAdapter;
+  return PropAdapter;
 }(_BaseDataAdapter3.default);
 
 exports.default = PropAdapter;
 
 /***/ }),
 /* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/**
- * 基础的通用属性定义
- */
-var MetaType = __webpack_require__(1);
-window.EnvConfig = window.EnvConfig || {};
-var SUPPORT_SERVER = window.EnvConfig.SUPPORT_SERVER_URL;
-var PRODUCT_TYPE_PAGE_SIMPLE = 2;
-module.exports = function (options) {
-    var productType = options.productType,
-        tplNode = options.tplNode,
-        currPage = options.currPage;
-
-    var PropMeta = [{
-        name: 'uikey',
-        label: '键值',
-        type: MetaType.Text,
-        props: {},
-        readOnly: !!(productType == PRODUCT_TYPE_PAGE_SIMPLE && currPage && currPage.isDevelopment !== 1),
-        defaultValue: ''
-    }, {
-        name: 'uititle',
-        label: '名称',
-        type: MetaType.Text,
-        props: {},
-        defaultValue: ''
-    }];
-    if (tplNode && tplNode.MetaType == "YYPage") {
-        PropMeta.push({
-            name: 'themeClassName',
-            label: '页面风格',
-            help: '主题样式皮肤风格名称',
-            type: MetaType.Select,
-            props: {
-                options: [{ text: '平台默认', value: '' }, { text: '公有云风格', value: 'GYY' }]
-            },
-            defaultValue: ''
-        });
-    }
-    PropMeta = PropMeta.concat([{
-        name: 'className',
-        label: '定制样式',
-        help: '自定义样式规则的名称，即：css的class名称',
-        type: MetaType.Text,
-        props: {},
-        defaultValue: ''
-    }, {
-        name: 'specialTag',
-        label: '特殊标识',
-        type: MetaType.Refer,
-        props: {
-            refinfokey: 'defdoc-component_props',
-            serverUrl: SUPPORT_SERVER
-        },
-        defaultValue: null
-    }]);
-    return PropMeta;
-};
-
-/***/ }),
-/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -836,7 +744,7 @@ module.exports = function (options) {
 };
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -914,7 +822,7 @@ module.exports = function (options) {
 };
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -930,7 +838,7 @@ var _BaseDataAdapter2 = __webpack_require__(0);
 
 var _BaseDataAdapter3 = _interopRequireDefault(_BaseDataAdapter2);
 
-var _LogicUtils = __webpack_require__(10);
+var _LogicUtils = __webpack_require__(9);
 
 var _LogicUtils2 = _interopRequireDefault(_LogicUtils);
 
@@ -1053,7 +961,7 @@ var EventAdapter = function (_BaseDataAdapter) {
 exports.default = EventAdapter;
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1122,7 +1030,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 11 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1251,14 +1159,14 @@ var UiDefines = function () {
 exports.default = UiDefines;
 
 /***/ }),
-/* 12 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -1279,121 +1187,121 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 var GlobalAdapter = function (_SuperAdapter) {
-    _inherits(GlobalAdapter, _SuperAdapter);
+  _inherits(GlobalAdapter, _SuperAdapter);
 
-    function GlobalAdapter() {
-        _classCallCheck(this, GlobalAdapter);
+  function GlobalAdapter() {
+    _classCallCheck(this, GlobalAdapter);
 
-        return _possibleConstructorReturn(this, (GlobalAdapter.__proto__ || Object.getPrototypeOf(GlobalAdapter)).call(this));
-    }
+    return _possibleConstructorReturn(this, (GlobalAdapter.__proto__ || Object.getPrototypeOf(GlobalAdapter)).call(this));
+  }
+  /**
+   * 构建组件的分组选择菜单列表
+   * @param options
+   * @return array 返回数据格式要求如下：
+   * [
+   * {
+   *   uititle:"基础",  //分组名称
+   *   uiicon: 'tag',  //分组图标
+   *   children: [//本分组下的组件集合
+   *     {
+   *       uitype:'Button',  //组件标识
+   *       uititle:'按钮',   //组件名称
+   *       uiicon:'',       //组件图标
+   *       uidefault:''     //组件缺省配置
+   *     },
+   *     ...//本分组下的更多其它组件
+   *   ]
+   * },
+   * ...  //更多其它分组
+   * ]
+   */
+
+
+  _createClass(GlobalAdapter, [{
+    key: "onViewMenus",
+    value: function onViewMenus(options) {}
+
     /**
-     * 构建组件的分组选择菜单列表
+     * 解析需要显示的源码内容
      * @param options
-     * @return array 返回数据格式要求如下：
-     * [
      * {
-     *   uititle:"基础",  //分组名称
-     *   uiicon: 'tag',  //分组图标
-     *   children: [//本分组下的组件集合
-     *     {
-     *       uitype:'Button',  //组件标识
-     *       uititle:'按钮',   //组件名称
-     *       uiicon:'',       //组件图标
-     *       uidefault:''     //组件缺省配置
-     *     },
-     *     ...//本分组下的更多其它组件
-     *   ]
-     * },
-     * ...  //更多其它分组
-     * ]
+     *     data:object //需要解析的json数据对象
+     * }
+     * @return string //返回生成的源码字符串
      */
 
+  }, {
+    key: "onSourceCodes",
+    value: function onSourceCodes(options) {}
 
-    _createClass(GlobalAdapter, [{
-        key: "onViewMenus",
-        value: function onViewMenus(options) {}
+    /**
+     * 获取当前组件可用的子组件类型
+     * @param options {tplNode}
+     * @return array
+     * 格式要求：
+     * ['uiTypeSub1','uiTypeSub2',...]
+     */
 
-        /**
-         * 解析需要显示的源码内容
-         * @param options
-         * {
-         *     data:object //需要解析的json数据对象
-         * }
-         * @return string //返回生成的源码字符串
-         */
+  }, {
+    key: "onUiSubset",
+    value: function onUiSubset(options) {}
 
-    }, {
-        key: "onSourceCodes",
-        value: function onSourceCodes(options) {}
+    /**
+     * 构建页面类型的可选列表
+     * @param options
+     * {
+     *     currApp:object //当前应用信息
+     * }
+     */
 
-        /**
-         * 获取当前组件可用的子组件类型
-         * @param options {tplNode}
-         * @return array
-         * 格式要求：
-         * ['uiTypeSub1','uiTypeSub2',...]
-         */
+  }, {
+    key: "onPageTypes",
+    value: function onPageTypes(options) {}
+    /**
+     * 新建页面时的触发的生命周期,主要用于处理缺省的页面节点数据
+     * @param options
+     */
 
-    }, {
-        key: "onUiSubset",
-        value: function onUiSubset(options) {}
+  }, {
+    key: "onDefaultPageData",
+    value: function onDefaultPageData(options) {}
 
-        /**
-         * 构建页面类型的可选列表
-         * @param options
-         * {
-         *     currApp:object //当前应用信息
-         * }
-         */
+    /**
+     * 页面数据保存时触发的生命周期
+     * @param options {tplTree}
+     */
 
-    }, {
-        key: "onPageTypes",
-        value: function onPageTypes(options) {}
-        /**
-         * 新建页面时的触发的生命周期,主要用于处理缺省的页面节点数据
-         * @param options
-         */
+  }, {
+    key: "onSaveData",
+    value: function onSaveData(options) {}
 
-    }, {
-        key: "onDefaultPageData",
-        value: function onDefaultPageData(options) {}
+    /**
+     * 获取当前组件可用的拖拽扩展按钮
+     * @param options
+     */
 
-        /**
-         * 页面数据保存时触发的生命周期
-         * @param options {tplTree}
-         */
+  }, {
+    key: "onDndButtons",
+    value: function onDndButtons(options) {
+      /**
+       * return [
+       *      {
+       *          key:''
+       *          text:'',
+       *          icon:''
+       *      }
+       * ]
+       */
+    }
+  }]);
 
-    }, {
-        key: "onSaveData",
-        value: function onSaveData(options) {}
-
-        /**
-         * 获取当前组件可用的拖拽扩展按钮
-         * @param options
-         */
-
-    }, {
-        key: "onDndButtons",
-        value: function onDndButtons(options) {
-            /**
-             * return [
-             *      {
-             *          key:''
-             *          text:'',
-             *          icon:''
-             *      }
-             * ]
-             */
-        }
-    }]);
-
-    return GlobalAdapter;
+  return GlobalAdapter;
 }(_SuperAdapter3.default);
 
 exports.default = GlobalAdapter;
 
 /***/ }),
-/* 13 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1415,7 +1323,7 @@ var _PropAdapter = __webpack_require__(5);
 
 var _PropAdapter2 = _interopRequireDefault(_PropAdapter);
 
-var _EventAdapter = __webpack_require__(9);
+var _EventAdapter = __webpack_require__(8);
 
 var _EventAdapter2 = _interopRequireDefault(_EventAdapter);
 
@@ -1423,23 +1331,23 @@ var _MetaType = __webpack_require__(1);
 
 var _MetaType2 = _interopRequireDefault(_MetaType);
 
-var _UiDefines = __webpack_require__(11);
+var _UiDefines = __webpack_require__(10);
 
 var _UiDefines2 = _interopRequireDefault(_UiDefines);
 
-var _UiLibrary = __webpack_require__(14);
+var _UiLibrary = __webpack_require__(13);
 
 var _UiLibrary2 = _interopRequireDefault(_UiLibrary);
 
-var _LogicUtils = __webpack_require__(10);
+var _LogicUtils = __webpack_require__(9);
 
 var _LogicUtils2 = _interopRequireDefault(_LogicUtils);
 
-var _PluginAdapter = __webpack_require__(15);
+var _PluginAdapter = __webpack_require__(14);
 
 var _PluginAdapter2 = _interopRequireDefault(_PluginAdapter);
 
-var _GlobalAdapter = __webpack_require__(12);
+var _GlobalAdapter = __webpack_require__(11);
 
 var _GlobalAdapter2 = _interopRequireDefault(_GlobalAdapter);
 
@@ -1460,7 +1368,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 14 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1472,7 +1380,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _UiDefines = __webpack_require__(11);
+var _UiDefines = __webpack_require__(10);
 
 var _UiDefines2 = _interopRequireDefault(_UiDefines);
 
@@ -1480,7 +1388,7 @@ var _PropAdapter = __webpack_require__(5);
 
 var _PropAdapter2 = _interopRequireDefault(_PropAdapter);
 
-var _EventAdapter = __webpack_require__(9);
+var _EventAdapter = __webpack_require__(8);
 
 var _EventAdapter2 = _interopRequireDefault(_EventAdapter);
 
@@ -1488,7 +1396,7 @@ var _ViewAdapter = __webpack_require__(4);
 
 var _ViewAdapter2 = _interopRequireDefault(_ViewAdapter);
 
-var _GlobalAdapter = __webpack_require__(12);
+var _GlobalAdapter = __webpack_require__(11);
 
 var _GlobalAdapter2 = _interopRequireDefault(_GlobalAdapter);
 
@@ -1807,7 +1715,7 @@ var UiLibrary = function () {
 exports.default = UiLibrary;
 
 /***/ }),
-/* 15 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1827,15 +1735,15 @@ var _MetaType = __webpack_require__(1);
 
 var _MetaType2 = _interopRequireDefault(_MetaType);
 
-var _PropMeta = __webpack_require__(6);
+var _PropMeta = __webpack_require__(15);
 
 var _PropMeta2 = _interopRequireDefault(_PropMeta);
 
-var _PropDataToValue = __webpack_require__(7);
+var _PropDataToValue = __webpack_require__(6);
 
 var _PropDataToValue2 = _interopRequireDefault(_PropDataToValue);
 
-var _PropValueToData = __webpack_require__(8);
+var _PropValueToData = __webpack_require__(7);
 
 var _PropValueToData2 = _interopRequireDefault(_PropValueToData);
 
@@ -1897,6 +1805,71 @@ var PluginAdapter = function (_BaseDataAdapter) {
 }(_BaseDataAdapter3.default);
 
 exports.default = PluginAdapter;
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * 基础的通用属性定义
+ */
+var MetaType = __webpack_require__(1);
+window.EnvConfig = window.EnvConfig || {};
+var SUPPORT_SERVER = window.EnvConfig.SUPPORT_SERVER_URL;
+var PRODUCT_TYPE_PAGE_SIMPLE = 2;
+module.exports = function (options) {
+    var productType = options.productType,
+        tplNode = options.tplNode,
+        currPage = options.currPage;
+
+    var PropMeta = [{
+        name: 'uikey',
+        label: '键值',
+        type: MetaType.Text,
+        props: {},
+        readOnly: !!(productType == PRODUCT_TYPE_PAGE_SIMPLE && currPage && currPage.isDevelopment !== 1),
+        defaultValue: ''
+    }, {
+        name: 'uititle',
+        label: '名称',
+        type: MetaType.Text,
+        props: {},
+        defaultValue: ''
+    }];
+    if (tplNode && tplNode.MetaType == "YYPage") {
+        PropMeta.push({
+            name: 'themeClassName',
+            label: '页面风格',
+            help: '主题样式皮肤风格名称',
+            type: MetaType.Select,
+            props: {
+                options: [{ text: '平台默认', value: '' }, { text: '公有云风格', value: 'GYY' }]
+            },
+            defaultValue: ''
+        });
+    }
+    PropMeta = PropMeta.concat([{
+        name: 'className',
+        label: '定制样式',
+        help: '自定义样式规则的名称，即：css的class名称',
+        type: MetaType.Text,
+        props: {},
+        defaultValue: ''
+    }, {
+        name: 'specialTag',
+        label: '特殊标识',
+        type: MetaType.Refer,
+        props: {
+            refinfokey: 'defdoc-component_props',
+            serverUrl: SUPPORT_SERVER
+        },
+        defaultValue: null
+    }]);
+    return PropMeta;
+};
 
 /***/ })
 /******/ ]);

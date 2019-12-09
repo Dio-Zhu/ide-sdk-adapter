@@ -4,8 +4,8 @@ module.exports = {
   entry: path.resolve(__dirname, 'src/index'),
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: "genadapter.js",
-    library:"GenAdapter",
+    filename: "ide-sdk-adapter.js",
+    library:"IdeSdkAdapter",
     libraryTarget:'umd'
   },
   // devtool: 'cheap-module-eval-source-map',

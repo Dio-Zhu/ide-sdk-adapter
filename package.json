@@ -1,8 +1,8 @@
 {
-  "name": "zzj-genadapter",
-  "version": "0.1.28",
+  "name": "ide-sdk-adapter",
+  "version": "0.2.0",
   "description": "集成可视化界面设计器的适配框架",
-  "main": "dist/genadapter.js",
+  "main": "dist/ide-sdk-adapter.js",
   "scripts": {
     "reg-cn": "npm config set registry https://registry.npm.taobao.org",
     "clear-cn": "npm config delete registry",
@@ -33,7 +33,6 @@
   },
   "dependencies": {},
   "repository": {
-    "type": "git",
-    "url": "https://github.com/Dio-Zhu/zzj-genadapter.git"
+    "type": "git"
   }
 }
