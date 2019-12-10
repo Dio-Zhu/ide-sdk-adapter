@@ -1,6 +1,6 @@
 {
   "name": "ide-sdk-adapter",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "集成可视化界面设计器的适配框架",
   "main": "dist/ide-sdk-adapter.js",
   "scripts": {
