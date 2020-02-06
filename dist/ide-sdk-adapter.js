@@ -277,7 +277,8 @@ var BaseDataAdapter = function (_SuperAdapter) {
      *  @param options:{
      *      tplTree,        //当前数据树
      *      tplNode,        //当前添加的数据节点对象
-     *      tplParentNode   //当前对应的父节点对象
+     *      tplParentNode,   //当前对应的父节点对象
+     *      isPart          //是否为部件
      *   }
      *   @return {无}
      */
@@ -1025,12 +1026,12 @@ var UiDefines = function () {
 
     /**
      * 添加一个组件的定义
-     * @param primaryKey    主键标识
-     * @param uitype        组件类型
-     * @param uititle       组件名称
-     * @param uiicon        组件图标
-     * @param uidefault     组件缺省属性
-     * @param uiisview      组件是否为视图
+     * @param primaryKey {string}    必填，主键标识
+     * @param uitype  {string}       必填，组件标识名
+     * @param uititle {string}       必填，组件描述名
+     * @param uiicon  {string}       可选，组件图标
+     * @param uidefault {object}     可选，组件缺省属性
+     * @param uiisview  {boolean}    可选，组件是否为视图,默认true
      */
 
 
@@ -1239,6 +1240,21 @@ var GlobalAdapter = function (_SuperAdapter) {
   }, {
     key: "onSaveData",
     value: function onSaveData(options) {}
+
+    /**
+     *  @desc 新数据节点创建完成后触发
+     *  @param options:{
+     *      tplTree,        //当前数据树
+     *      tplNode,        //当前添加的数据节点对象
+     *      tplParentNode,   //当前对应的父节点对象
+     *      isPart          //是否为部件
+     *   }
+     *   @return {无}
+     */
+
+  }, {
+    key: "onCreateDataComplete",
+    value: function onCreateDataComplete(options) {}
 
     /**
      * 获取当前组件可用的拖拽扩展按钮

@@ -12,12 +12,12 @@ export default class UiDefines{
 
     /**
      * 添加一个组件的定义
-     * @param primaryKey    主键标识
-     * @param uitype        组件类型
-     * @param uititle       组件名称
-     * @param uiicon        组件图标
-     * @param uidefault     组件缺省属性
-     * @param uiisview      组件是否为视图
+     * @param primaryKey {string}    必填，主键标识
+     * @param uitype  {string}       必填，组件标识名
+     * @param uititle {string}       必填，组件描述名
+     * @param uiicon  {string}       可选，组件图标
+     * @param uidefault {object}     可选，组件缺省属性
+     * @param uiisview  {boolean}    可选，组件是否为视图,默认true
      */
     add(primaryKey,uitype,uititle,uiicon,uidefault,uiisview){
         this.UiType[primaryKey] = uitype;

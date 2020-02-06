@@ -31,7 +31,8 @@ export default class BaseDataAdapter extends SuperAdapter{
      *  @param options:{
      *      tplTree,        //当前数据树
      *      tplNode,        //当前添加的数据节点对象
-     *      tplParentNode   //当前对应的父节点对象
+     *      tplParentNode,   //当前对应的父节点对象
+     *      isPart          //是否为部件
      *   }
      *   @return {无}
      */
