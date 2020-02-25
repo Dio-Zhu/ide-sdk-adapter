@@ -104,4 +104,17 @@ export default class GlobalAdapter extends SuperAdapter{
          * ]
          */
     }
+
+    /**
+     * 获取当前的配置信息
+     * @param options:{
+     *     tplTree, //当前树数据
+     *     tplNode, //当前选中节点
+     *     config,  //当前全部配置项的默认值
+     *     configKey//当前配置项
+     * }
+     */
+    onConfig(options){
+
+    }
 }
