@@ -1,9 +1,27 @@
 /**
  * 视图转换适配器
  */
-import BaseViewAdapter from "./BaseViewAdapter";
+import SuperAdapter from "./SuperAdapter";
 
-export default class ViewAdapter extends BaseViewAdapter{
+export default class ViewAdapter extends SuperAdapter{
+
+    /**
+     * 构建对象
+     * @param primaryKey 主键/组件标识
+     */
+    constructor(primaryKey) {
+        super();
+        this.primaryKey = primaryKey;
+    }
+
+    /**
+     * 获取主键/组件标识
+     * @return {string}
+     */
+    getPrimaryKey() {
+        return this.primaryKey;
+    }
+
     //--------------生命周期方法--------------------
     /**
      * @desc 构建数据节点的显示视图
@@ -85,4 +103,6 @@ export default class ViewAdapter extends BaseViewAdapter{
      * @return 无
      */
     onActionHandler(options){}
+
+
 }
