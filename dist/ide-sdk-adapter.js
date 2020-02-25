@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 10);
+/******/ 	return __webpack_require__(__webpack_require__.s = 9);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -219,12 +219,63 @@ module.exports = {
 
 
 Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * 所有适配器类均需要继承此超类
+ */
+var SuperAdapter = function () {
+    function SuperAdapter() {
+        _classCallCheck(this, SuperAdapter);
+    }
+    /**
+     * 调用自生的方法
+     * @param funcName
+     * @param funcOptions
+     */
+
+
+    _createClass(SuperAdapter, [{
+        key: 'callFunction',
+        value: function callFunction(funcName, funcOptions) {
+            if (!funcName) {
+                console.warn('callFunction not funcName', this);
+                return;
+            }
+            var func = this[funcName];
+            if (typeof func !== 'function') {
+                console.warn('callFunction is not function:' + funcName, this);
+                return;
+            }
+            var funcResult = func.call(this, funcOptions);
+            return funcResult;
+        }
+    }]);
+
+    return SuperAdapter;
+}();
+
+exports.default = SuperAdapter;
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _SuperAdapter2 = __webpack_require__(2);
+var _SuperAdapter2 = __webpack_require__(1);
 
 var _SuperAdapter3 = _interopRequireDefault(_SuperAdapter2);
 
@@ -348,57 +399,6 @@ var BaseDataAdapter = function (_SuperAdapter) {
 exports.default = BaseDataAdapter;
 
 /***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-/**
- * 所有适配器类均需要继承此超类
- */
-var SuperAdapter = function () {
-    function SuperAdapter() {
-        _classCallCheck(this, SuperAdapter);
-    }
-    /**
-     * 调用自生的方法
-     * @param funcName
-     * @param funcOptions
-     */
-
-
-    _createClass(SuperAdapter, [{
-        key: 'callFunction',
-        value: function callFunction(funcName, funcOptions) {
-            if (!funcName) {
-                console.warn('callFunction not funcName', this);
-                return;
-            }
-            var func = this[funcName];
-            if (typeof func !== 'function') {
-                console.warn('callFunction is not function:' + funcName, this);
-                return;
-            }
-            var funcResult = func.call(this, funcOptions);
-            return funcResult;
-        }
-    }]);
-
-    return SuperAdapter;
-}();
-
-exports.default = SuperAdapter;
-
-/***/ }),
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -411,71 +411,9 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _SuperAdapter2 = __webpack_require__(2);
+var _SuperAdapter2 = __webpack_require__(1);
 
 var _SuperAdapter3 = _interopRequireDefault(_SuperAdapter2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * 基础视图转换适配器
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
-
-
-var BaseViewAdapter = function (_SuperAdapter) {
-  _inherits(BaseViewAdapter, _SuperAdapter);
-
-  /**
-   * 构建对象
-   * @param primaryKey 主键/组件标识
-   */
-  function BaseViewAdapter(primaryKey) {
-    _classCallCheck(this, BaseViewAdapter);
-
-    var _this = _possibleConstructorReturn(this, (BaseViewAdapter.__proto__ || Object.getPrototypeOf(BaseViewAdapter)).call(this));
-
-    _this.primaryKey = primaryKey;
-    return _this;
-  }
-
-  /**
-   * 获取主键/组件标识
-   * @return {string}
-   */
-
-
-  _createClass(BaseViewAdapter, [{
-    key: "getPrimaryKey",
-    value: function getPrimaryKey() {
-      return this.primaryKey;
-    }
-  }]);
-
-  return BaseViewAdapter;
-}(_SuperAdapter3.default);
-
-exports.default = BaseViewAdapter;
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _BaseViewAdapter2 = __webpack_require__(3);
-
-var _BaseViewAdapter3 = _interopRequireDefault(_BaseViewAdapter2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -488,17 +426,33 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 */
 
 
-var ViewAdapter = function (_BaseViewAdapter) {
-  _inherits(ViewAdapter, _BaseViewAdapter);
+var ViewAdapter = function (_SuperAdapter) {
+  _inherits(ViewAdapter, _SuperAdapter);
 
-  function ViewAdapter() {
+  /**
+   * 构建对象
+   * @param primaryKey 主键/组件标识
+   */
+  function ViewAdapter(primaryKey) {
     _classCallCheck(this, ViewAdapter);
 
-    return _possibleConstructorReturn(this, (ViewAdapter.__proto__ || Object.getPrototypeOf(ViewAdapter)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (ViewAdapter.__proto__ || Object.getPrototypeOf(ViewAdapter)).call(this));
+
+    _this.primaryKey = primaryKey;
+    return _this;
   }
 
+  /**
+   * 获取主键/组件标识
+   * @return {string}
+   */
+
+
   _createClass(ViewAdapter, [{
-    key: "onDataView",
+    key: "getPrimaryKey",
+    value: function getPrimaryKey() {
+      return this.primaryKey;
+    }
 
     //--------------生命周期方法--------------------
     /**
@@ -517,6 +471,9 @@ var ViewAdapter = function (_BaseViewAdapter) {
      * }
      * ]
      */
+
+  }, {
+    key: "onDataView",
     value: function onDataView(options) {}
 
     /**
@@ -599,12 +556,12 @@ var ViewAdapter = function (_BaseViewAdapter) {
   }]);
 
   return ViewAdapter;
-}(_BaseViewAdapter3.default);
+}(_SuperAdapter3.default);
 
 exports.default = ViewAdapter;
 
 /***/ }),
-/* 5 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -616,7 +573,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _BaseDataAdapter2 = __webpack_require__(1);
+var _BaseDataAdapter2 = __webpack_require__(2);
 
 var _BaseDataAdapter3 = _interopRequireDefault(_BaseDataAdapter2);
 
@@ -788,7 +745,7 @@ var PropAdapter = function (_BaseDataAdapter) {
 exports.default = PropAdapter;
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -800,11 +757,11 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _BaseDataAdapter2 = __webpack_require__(1);
+var _BaseDataAdapter2 = __webpack_require__(2);
 
 var _BaseDataAdapter3 = _interopRequireDefault(_BaseDataAdapter2);
 
-var _LogicUtils = __webpack_require__(7);
+var _LogicUtils = __webpack_require__(6);
 
 var _LogicUtils2 = _interopRequireDefault(_LogicUtils);
 
@@ -927,7 +884,7 @@ var EventAdapter = function (_BaseDataAdapter) {
 exports.default = EventAdapter;
 
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -996,7 +953,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1125,7 +1082,7 @@ var UiDefines = function () {
 exports.default = UiDefines;
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1137,7 +1094,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _SuperAdapter2 = __webpack_require__(2);
+var _SuperAdapter2 = __webpack_require__(1);
 
 var _SuperAdapter3 = _interopRequireDefault(_SuperAdapter2);
 
@@ -1282,29 +1239,21 @@ var GlobalAdapter = function (_SuperAdapter) {
 exports.default = GlobalAdapter;
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _BaseDataAdapter = __webpack_require__(1);
-
-var _BaseDataAdapter2 = _interopRequireDefault(_BaseDataAdapter);
-
-var _BaseViewAdapter = __webpack_require__(3);
-
-var _BaseViewAdapter2 = _interopRequireDefault(_BaseViewAdapter);
-
-var _ViewAdapter = __webpack_require__(4);
+var _ViewAdapter = __webpack_require__(3);
 
 var _ViewAdapter2 = _interopRequireDefault(_ViewAdapter);
 
-var _PropAdapter = __webpack_require__(5);
+var _PropAdapter = __webpack_require__(4);
 
 var _PropAdapter2 = _interopRequireDefault(_PropAdapter);
 
-var _EventAdapter = __webpack_require__(6);
+var _EventAdapter = __webpack_require__(5);
 
 var _EventAdapter2 = _interopRequireDefault(_EventAdapter);
 
@@ -1312,31 +1261,29 @@ var _MetaType = __webpack_require__(0);
 
 var _MetaType2 = _interopRequireDefault(_MetaType);
 
-var _UiDefines = __webpack_require__(8);
+var _UiDefines = __webpack_require__(7);
 
 var _UiDefines2 = _interopRequireDefault(_UiDefines);
 
-var _UiLibrary = __webpack_require__(11);
+var _UiLibrary = __webpack_require__(10);
 
 var _UiLibrary2 = _interopRequireDefault(_UiLibrary);
 
-var _LogicUtils = __webpack_require__(7);
+var _LogicUtils = __webpack_require__(6);
 
 var _LogicUtils2 = _interopRequireDefault(_LogicUtils);
 
-var _PluginAdapter = __webpack_require__(12);
+var _PluginAdapter = __webpack_require__(11);
 
 var _PluginAdapter2 = _interopRequireDefault(_PluginAdapter);
 
-var _GlobalAdapter = __webpack_require__(9);
+var _GlobalAdapter = __webpack_require__(8);
 
 var _GlobalAdapter2 = _interopRequireDefault(_GlobalAdapter);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 module.exports = {
-    BaseDataAdapter: _BaseDataAdapter2.default,
-    BaseViewAdapter: _BaseViewAdapter2.default,
     ViewAdapter: _ViewAdapter2.default,
     PropAdapter: _PropAdapter2.default,
     EventAdapter: _EventAdapter2.default,
@@ -1349,7 +1296,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 11 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1361,23 +1308,23 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _UiDefines = __webpack_require__(8);
+var _UiDefines = __webpack_require__(7);
 
 var _UiDefines2 = _interopRequireDefault(_UiDefines);
 
-var _PropAdapter = __webpack_require__(5);
+var _PropAdapter = __webpack_require__(4);
 
 var _PropAdapter2 = _interopRequireDefault(_PropAdapter);
 
-var _EventAdapter = __webpack_require__(6);
+var _EventAdapter = __webpack_require__(5);
 
 var _EventAdapter2 = _interopRequireDefault(_EventAdapter);
 
-var _ViewAdapter = __webpack_require__(4);
+var _ViewAdapter = __webpack_require__(3);
 
 var _ViewAdapter2 = _interopRequireDefault(_ViewAdapter);
 
-var _GlobalAdapter = __webpack_require__(9);
+var _GlobalAdapter = __webpack_require__(8);
 
 var _GlobalAdapter2 = _interopRequireDefault(_GlobalAdapter);
 
@@ -1696,7 +1643,7 @@ var UiLibrary = function () {
 exports.default = UiLibrary;
 
 /***/ }),
-/* 12 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1708,7 +1655,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _BaseDataAdapter2 = __webpack_require__(1);
+var _BaseDataAdapter2 = __webpack_require__(2);
 
 var _BaseDataAdapter3 = _interopRequireDefault(_BaseDataAdapter2);
 
@@ -1716,15 +1663,15 @@ var _MetaType = __webpack_require__(0);
 
 var _MetaType2 = _interopRequireDefault(_MetaType);
 
-var _PropMeta = __webpack_require__(13);
+var _PropMeta = __webpack_require__(12);
 
 var _PropMeta2 = _interopRequireDefault(_PropMeta);
 
-var _PropDataToValue = __webpack_require__(14);
+var _PropDataToValue = __webpack_require__(13);
 
 var _PropDataToValue2 = _interopRequireDefault(_PropDataToValue);
 
-var _PropValueToData = __webpack_require__(15);
+var _PropValueToData = __webpack_require__(14);
 
 var _PropValueToData2 = _interopRequireDefault(_PropValueToData);
 
@@ -1788,7 +1735,7 @@ var PluginAdapter = function (_BaseDataAdapter) {
 exports.default = PluginAdapter;
 
 /***/ }),
-/* 13 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1853,7 +1800,7 @@ module.exports = function (options) {
 };
 
 /***/ }),
-/* 14 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1894,7 +1841,7 @@ module.exports = function (options) {
 };
 
 /***/ }),
-/* 15 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
