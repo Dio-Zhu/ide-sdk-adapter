@@ -31,6 +31,30 @@ export default class GlobalAdapter extends SuperAdapter{
     onViewMenus(options){}
 
     /**
+     * 构建自定义配置面板
+     * @param options
+     * @return array 返回数据格式要求如下：
+     * [
+     * {
+     *   key:"",          //面板编码
+     *   title:"基础",     //面板名称
+     *   url:''            //面板页面地址
+     * },
+     * ...  //更多其它分组
+     * ]
+     */
+    onViewPanes(options){}
+
+    /**
+     * 构建自定义页面
+     * @param options
+     * TODO
+     */
+    onViewPages(options){
+
+    }
+
+    /**
      * 解析需要显示的源码内容
      * @param options
      * {

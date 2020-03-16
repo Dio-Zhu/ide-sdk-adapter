@@ -1145,6 +1145,34 @@ var GlobalAdapter = function (_SuperAdapter) {
     value: function onViewMenus(options) {}
 
     /**
+     * 构建自定义配置面板
+     * @param options
+     * @return array 返回数据格式要求如下：
+     * [
+     * {
+     *   key:"",          //面板编码
+     *   title:"基础",     //面板名称
+     *   url:''            //面板页面地址
+     * },
+     * ...  //更多其它分组
+     * ]
+     */
+
+  }, {
+    key: "onViewPanes",
+    value: function onViewPanes(options) {}
+
+    /**
+     * 构建自定义页面
+     * @param options
+     * TODO
+     */
+
+  }, {
+    key: "onViewPages",
+    value: function onViewPages(options) {}
+
+    /**
      * 解析需要显示的源码内容
      * @param options
      * {
@@ -1220,17 +1248,31 @@ var GlobalAdapter = function (_SuperAdapter) {
 
   }, {
     key: "onDndButtons",
-    value: function onDndButtons(options) {
-      /**
-       * return [
-       *      {
-       *          key:''
-       *          text:'',
-       *          icon:''
-       *      }
-       * ]
-       */
-    }
+    value: function onDndButtons(options) {}
+    /**
+     * return [
+     *      {
+     *          key:''
+     *          text:'',
+     *          icon:''
+     *      }
+     * ]
+     */
+
+
+    /**
+     * 获取当前的配置信息
+     * @param options:{
+     *     tplTree, //当前树数据
+     *     tplNode, //当前选中节点
+     *     config,  //当前全部配置项的默认值
+     *     configKey//当前配置项
+     * }
+     */
+
+  }, {
+    key: "onConfig",
+    value: function onConfig(options) {}
   }]);
 
   return GlobalAdapter;
