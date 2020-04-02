@@ -63,6 +63,10 @@ module.exports = {
      */
     SwitchText:'SwitchText',
     /**
+     * 按钮
+     */
+    Button: 'Button',
+    /**
      * 图标库(非通用)
      */
     Icon: 'Icon',
