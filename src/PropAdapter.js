@@ -105,7 +105,7 @@ export default class PropAdapter extends BaseDataAdapter{
             if(!meta)continue;
             if(!(meta.name in formData))continue;
             let value = formData[meta.name];
-            value = strTrim(value);//去除前后多余空格
+            // value = strTrim(value);//去除前后多余空格
             switch (meta.name) {
                 case "uikey":
                 case "uititle":

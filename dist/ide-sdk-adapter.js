@@ -196,6 +196,10 @@ module.exports = {
    */
   SwitchText: 'SwitchText',
   /**
+   * 按钮
+   */
+  Button: 'Button',
+  /**
    * 图标库(非通用)
    */
   Icon: 'Icon',
@@ -580,7 +584,7 @@ var PropAdapter = function (_BaseDataAdapter) {
                 if (!meta) continue;
                 if (!(meta.name in formData)) continue;
                 var value = formData[meta.name];
-                value = strTrim(value); //去除前后多余空格
+                // value = strTrim(value);//去除前后多余空格
                 switch (meta.name) {
                     case "uikey":
                     case "uititle":
