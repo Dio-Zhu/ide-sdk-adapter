@@ -114,6 +114,29 @@ export default class GlobalAdapter extends SuperAdapter{
     }
 
     /**
+     * 获取页面可用的扩展按钮
+     * @param options:{
+     *     currApp,//当前应用
+     *     currPage//当前页面
+     * }
+     */
+    onPageButtons(options){
+        /**
+         * return [
+         *      {
+         *          key:''  //按钮唯一值
+         *          text:'',//按钮文本
+         *          disabled:false,//按钮是否禁用
+         *          onClick:function(info){//按钮点击事件
+         *              console.log("当前树数据：",info.tplTree);
+         *              console.log("当前选中节点数据：",info.tplNode);
+         *          }
+         *      }
+         * ]
+         */
+    }
+
+    /**
      * 获取当前组件可用的拖拽扩展按钮
      * @param options
      */
