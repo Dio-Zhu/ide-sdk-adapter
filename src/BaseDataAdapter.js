@@ -48,9 +48,23 @@ export default class BaseDataAdapter extends SuperAdapter{
      *     tplParentNode,//移动后的父节点
      *     tplSourceNode,//移动前的节点
      *     tplSourceParentNode,//移动前的父节点
+     *     tplTargetNode,//移动相对的目标节点
+     *     position,     //移动相对目标节点的位置 "before|left|top"移动到目标节点前、"after|right|top"移动到目标节点后、"insert"插入目标节点里面
      * }
      */
     onMoveData(options){
+
+    }
+
+    /**
+     * @desc 数据节点被删除/移除时触发
+     * @param options
+     * {
+     *     tplTree, //节点删除后的数据树
+     *     tplNode, //被删除的节点
+     * }
+     */
+    onDeleteData(options){
 
     }
 

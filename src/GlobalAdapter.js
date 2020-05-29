@@ -119,37 +119,36 @@ export default class GlobalAdapter extends SuperAdapter{
      *     currApp,//当前应用
      *     currPage//当前页面
      * }
+     * @return 要求返回的结果格式如下：
+     * [
+     *      {
+     *          key:''  //按钮唯一值
+     *          text:'',//按钮文本
+     *          disabled:false,//按钮是否禁用
+     *          onClick:function(info){//按钮点击事件
+     *			    let {tplTree,tplNode} = info;
+     *              console.log("当前树数据：",info.tplTree);
+     *              console.log("当前选中节点数据：",info.tplNode);
+     *          }
+     *      }
+     * ]
      */
     onPageButtons(options){
-        /**
-         * return [
-         *      {
-         *          key:''  //按钮唯一值
-         *          text:'',//按钮文本
-         *          disabled:false,//按钮是否禁用
-         *          onClick:function(info){//按钮点击事件
-         *              console.log("当前树数据：",info.tplTree);
-         *              console.log("当前选中节点数据：",info.tplNode);
-         *          }
-         *      }
-         * ]
-         */
     }
 
     /**
      * 获取当前组件可用的拖拽扩展按钮
      * @param options
+     * @return 要求返回的结果格式如下：
+     * [
+     *      {
+     *          key:''
+     *          text:'',
+     *          icon:''
+     *      }
+     * ]
      */
     onDndButtons(options){
-        /**
-         * return [
-         *      {
-         *          key:''
-         *          text:'',
-         *          icon:''
-         *      }
-         * ]
-         */
     }
 
     /**

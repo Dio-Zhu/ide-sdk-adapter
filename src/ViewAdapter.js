@@ -66,6 +66,8 @@ export default class ViewAdapter extends SuperAdapter{
      *     tplNode, //当前移动的节点
      *     tplParentNode,//移动前的父节点
      *     tplTargetParentNode,//移动后的父节点
+     *     tplTargetNode,//移动相对的目标节点
+     *     position,     //移动相对目标节点的位置 "before|left|top"目标节点前、"after|right|top"目标节点后、"insert"目标节点里面
      *   }
      *   @return {Object} 校验元数据视图 @link 请参考ValidMeta说明
      */

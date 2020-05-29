@@ -375,6 +375,8 @@ var ViewAdapter = function (_SuperAdapter) {
      *     tplNode, //当前移动的节点
      *     tplParentNode,//移动前的父节点
      *     tplTargetParentNode,//移动后的父节点
+     *     tplTargetNode,//移动相对的目标节点
+     *     position,     //移动相对目标节点的位置 "before|left|top"目标节点前、"after|right|top"目标节点后、"insert"目标节点里面
      *   }
      *   @return {Object} 校验元数据视图 @link 请参考ValidMeta说明
      */
@@ -697,12 +699,27 @@ var BaseDataAdapter = function (_SuperAdapter) {
      *     tplParentNode,//移动后的父节点
      *     tplSourceNode,//移动前的节点
      *     tplSourceParentNode,//移动前的父节点
+     *     tplTargetNode,//移动相对的目标节点
+     *     position,     //移动相对目标节点的位置 "before|left|top"移动到目标节点前、"after|right|top"移动到目标节点后、"insert"插入目标节点里面
      * }
      */
 
   }, {
     key: "onMoveData",
     value: function onMoveData(options) {}
+
+    /**
+     * @desc 数据节点被删除/移除时触发
+     * @param options
+     * {
+     *     tplTree, //节点删除后的数据树
+     *     tplNode, //被删除的节点
+     * }
+     */
+
+  }, {
+    key: "onDeleteData",
+    value: function onDeleteData(options) {}
 
     /**
      * @desc 将数据转换为配置值
@@ -1246,15 +1263,35 @@ var GlobalAdapter = function (_SuperAdapter) {
     value: function onCreateDataComplete(options) {}
 
     /**
-     * 获取当前组件可用的拖拽扩展按钮
-     * @param options
+     * 获取页面可用的扩展按钮
+     * @param options:{
+     *     currApp,//当前应用
+     *     currPage//当前页面
+     * }
+     * @return 要求返回的结果格式如下：
+     * [
+     *      {
+     *          key:''  //按钮唯一值
+     *          text:'',//按钮文本
+     *          disabled:false,//按钮是否禁用
+     *          onClick:function(info){//按钮点击事件
+     *			    let {tplTree,tplNode} = info;
+     *              console.log("当前树数据：",info.tplTree);
+     *              console.log("当前选中节点数据：",info.tplNode);
+     *          }
+     *      }
+     * ]
      */
 
   }, {
-    key: "onDndButtons",
-    value: function onDndButtons(options) {}
+    key: "onPageButtons",
+    value: function onPageButtons(options) {}
+
     /**
-     * return [
+     * 获取当前组件可用的拖拽扩展按钮
+     * @param options
+     * @return 要求返回的结果格式如下：
+     * [
      *      {
      *          key:''
      *          text:'',
@@ -1262,6 +1299,12 @@ var GlobalAdapter = function (_SuperAdapter) {
      *      }
      * ]
      */
+
+  }, {
+    key: "onDndButtons",
+    value: function onDndButtons(options) {}
+    /**
+      */
 
 
     /**
