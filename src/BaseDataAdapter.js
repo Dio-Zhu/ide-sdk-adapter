@@ -32,7 +32,9 @@ export default class BaseDataAdapter extends SuperAdapter{
      *      tplTree,        //当前数据树
      *      tplNode,        //当前添加的数据节点对象
      *      tplParentNode,   //当前对应的父节点对象
-     *      isPart          //是否为部件
+     *      isPart,          //是否为部件
+     *      targetParams,   //拖拽创建时目标dom节点的uiparams属性值
+     *      forTargetParams,//拖拽创建时目标dom节点为fornid属性的uiparams属性值
      *   }
      *   @return {无}
      */
@@ -50,6 +52,8 @@ export default class BaseDataAdapter extends SuperAdapter{
      *     tplSourceParentNode,//移动前的父节点
      *     tplTargetNode,//移动相对的目标节点
      *     position,     //移动相对目标节点的位置 "before|left|top"移动到目标节点前、"after|right|top"移动到目标节点后、"insert"插入目标节点里面
+     *     targetParams,   //拖拽创建时目标dom节点的uiparams属性值
+     *     forTargetParams//拖拽创建时目标dom节点为fornid属性的uiparams属性值
      * }
      */
     onMoveData(options){
