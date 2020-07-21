@@ -32,7 +32,7 @@ export default class GlobalAdapter extends SuperAdapter{
      * ]
      */
     onViewMenus(options){
-        let {currDataSource} = options;
+        let {currDataSource} = options||{};
         return currDataSource;
     }
 
@@ -50,7 +50,7 @@ export default class GlobalAdapter extends SuperAdapter{
      * ]
      */
     onViewPanes(options){
-        let {currDataSource} = options;
+        let {currDataSource} = options||{};
         return currDataSource;
     }
 
@@ -85,7 +85,7 @@ export default class GlobalAdapter extends SuperAdapter{
      * ['uiTypeSub1','uiTypeSub2',...]
      */
     onUiSubset(options){
-        let {currDataSource} = options;
+        let {currDataSource} = options||{};
         return currDataSource;
     }
 

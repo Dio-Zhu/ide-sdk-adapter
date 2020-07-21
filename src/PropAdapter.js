@@ -43,7 +43,7 @@ export default class PropAdapter extends BaseDataAdapter{
      * @return {Array} 元数据数组集合 @link 请参考PageMeta说明
      */
     onPageMetas(options) {
-        let {currDataSource} = options;
+        let {currDataSource} = options||{};
         if(currDataSource){
             return currDataSource;
         }else{
@@ -80,7 +80,7 @@ export default class PropAdapter extends BaseDataAdapter{
      * @param options
      */
     onDataToValue(options){
-        let {formMeta,tplNode,tplTree} = options;
+        let {formMeta,tplNode,tplTree} = options||{};
         let newFormData = {};
         formMeta = formMeta||[];
         for(let i=0;i<formMeta.length;i++){
@@ -106,7 +106,7 @@ export default class PropAdapter extends BaseDataAdapter{
      * @return 无
      */
     onValueToData(options){
-        let {formMeta,formData,tplNode,tplTree,keepDefaultValue} = options;
+        let {formMeta,formData,tplNode,tplTree,keepDefaultValue} = options||{};
         formMeta = formMeta||[];
         for(let i=0;i<formMeta.length;i++) {
             let meta = formMeta[i];
