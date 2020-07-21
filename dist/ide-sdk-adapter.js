@@ -505,24 +505,31 @@ var PropAdapter = function (_BaseDataAdapter) {
          *     productType, //所属产品类型
          *     currApp,     //所属应用信息
          *     currPage,    //所属页面信息
-         *     pageList     //所属应用下的全部页面信息
+         *     pageList,     //所属应用下的全部页面信息
+         *     currDataSource //当前属性数据源
          * }
          * @return {Array} 元数据数组集合 @link 请参考PageMeta说明
          */
         value: function onPageMetas(options) {
-            return [{
-                name: 'uikey',
-                label: '键值',
-                type: MetaType.Text,
-                props: {},
-                defaultValue: ''
-            }, {
-                name: 'uititle',
-                label: '名称',
-                type: MetaType.Text,
-                props: {},
-                defaultValue: ''
-            }];
+            var currDataSource = options.currDataSource;
+
+            if (currDataSource) {
+                return currDataSource;
+            } else {
+                return [{
+                    name: 'uikey',
+                    label: '键值',
+                    type: MetaType.Text,
+                    props: {},
+                    defaultValue: ''
+                }, {
+                    name: 'uititle',
+                    label: '名称',
+                    type: MetaType.Text,
+                    props: {},
+                    defaultValue: ''
+                }];
+            }
         }
 
         /**
@@ -549,6 +556,7 @@ var PropAdapter = function (_BaseDataAdapter) {
                 tplTree = options.tplTree;
 
             var newFormData = {};
+            formMeta = formMeta || [];
             for (var i = 0; i < formMeta.length; i++) {
                 var meta = formMeta[i];
                 if (!meta) continue;
@@ -581,6 +589,7 @@ var PropAdapter = function (_BaseDataAdapter) {
                 tplTree = options.tplTree,
                 keepDefaultValue = options.keepDefaultValue;
 
+            formMeta = formMeta || [];
             for (var i = 0; i < formMeta.length; i++) {
                 var meta = formMeta[i];
                 if (!meta) continue;
@@ -681,7 +690,9 @@ var BaseDataAdapter = function (_SuperAdapter) {
      *      tplTree,        //当前数据树
      *      tplNode,        //当前添加的数据节点对象
      *      tplParentNode,   //当前对应的父节点对象
-     *      isPart          //是否为部件
+     *      isPart,          //是否为部件
+     *      targetParams,   //拖拽创建时目标dom节点的uiparams属性值
+     *      forTargetParams,//拖拽创建时目标dom节点为fornid属性的uiparams属性值
      *   }
      *   @return {无}
      */
@@ -701,6 +712,8 @@ var BaseDataAdapter = function (_SuperAdapter) {
      *     tplSourceParentNode,//移动前的父节点
      *     tplTargetNode,//移动相对的目标节点
      *     position,     //移动相对目标节点的位置 "before|left|top"移动到目标节点前、"after|right|top"移动到目标节点后、"insert"插入目标节点里面
+     *     targetParams,   //拖拽创建时目标dom节点的uiparams属性值
+     *     forTargetParams//拖拽创建时目标dom节点为fornid属性的uiparams属性值
      * }
      */
 
@@ -1141,6 +1154,9 @@ var GlobalAdapter = function (_SuperAdapter) {
   /**
    * 构建组件的分组选择菜单列表
    * @param options
+   * {
+   *     currDataSource:[]//当前数据源
+   * }
    * @return array 返回数据格式要求如下：
    * [
    * {
@@ -1163,7 +1179,11 @@ var GlobalAdapter = function (_SuperAdapter) {
 
   _createClass(GlobalAdapter, [{
     key: "onViewMenus",
-    value: function onViewMenus(options) {}
+    value: function onViewMenus(options) {
+      var currDataSource = options.currDataSource;
+
+      return currDataSource;
+    }
 
     /**
      * 构建自定义配置面板
@@ -1181,7 +1201,11 @@ var GlobalAdapter = function (_SuperAdapter) {
 
   }, {
     key: "onViewPanes",
-    value: function onViewPanes(options) {}
+    value: function onViewPanes(options) {
+      var currDataSource = options.currDataSource;
+
+      return currDataSource;
+    }
 
     /**
      * 构建自定义页面
@@ -1208,7 +1232,11 @@ var GlobalAdapter = function (_SuperAdapter) {
 
     /**
      * 获取当前组件可用的子组件类型
-     * @param options {tplNode}
+     * @param options
+     * {
+     *  tplNode,
+     *  currDataSource
+     * }
      * @return array
      * 格式要求：
      * ['uiTypeSub1','uiTypeSub2',...]
@@ -1216,7 +1244,11 @@ var GlobalAdapter = function (_SuperAdapter) {
 
   }, {
     key: "onUiSubset",
-    value: function onUiSubset(options) {}
+    value: function onUiSubset(options) {
+      var currDataSource = options.currDataSource;
+
+      return currDataSource;
+    }
 
     /**
      * 构建页面类型的可选列表
@@ -1303,9 +1335,6 @@ var GlobalAdapter = function (_SuperAdapter) {
   }, {
     key: "onDndButtons",
     value: function onDndButtons(options) {}
-    /**
-      */
-
 
     /**
      * 获取当前的配置信息
