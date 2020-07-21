@@ -10,6 +10,9 @@ export default class GlobalAdapter extends SuperAdapter{
     /**
      * 构建组件的分组选择菜单列表
      * @param options
+     * {
+     *     currDataSource:[]//当前数据源
+     * }
      * @return array 返回数据格式要求如下：
      * [
      * {
@@ -28,7 +31,10 @@ export default class GlobalAdapter extends SuperAdapter{
      * ...  //更多其它分组
      * ]
      */
-    onViewMenus(options){}
+    onViewMenus(options){
+        let {currDataSource} = options;
+        return currDataSource;
+    }
 
     /**
      * 构建自定义配置面板
@@ -43,7 +49,10 @@ export default class GlobalAdapter extends SuperAdapter{
      * ...  //更多其它分组
      * ]
      */
-    onViewPanes(options){}
+    onViewPanes(options){
+        let {currDataSource} = options;
+        return currDataSource;
+    }
 
     /**
      * 构建自定义页面
@@ -66,12 +75,19 @@ export default class GlobalAdapter extends SuperAdapter{
 
     /**
      * 获取当前组件可用的子组件类型
-     * @param options {tplNode}
+     * @param options
+     * {
+     *  tplNode,
+     *  currDataSource
+     * }
      * @return array
      * 格式要求：
      * ['uiTypeSub1','uiTypeSub2',...]
      */
-    onUiSubset(options){}
+    onUiSubset(options){
+        let {currDataSource} = options;
+        return currDataSource;
+    }
 
     /**
      * 构建页面类型的可选列表

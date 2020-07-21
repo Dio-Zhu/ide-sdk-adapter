@@ -37,26 +37,32 @@ export default class PropAdapter extends BaseDataAdapter{
      *     productType, //所属产品类型
      *     currApp,     //所属应用信息
      *     currPage,    //所属页面信息
-     *     pageList     //所属应用下的全部页面信息
+     *     pageList,     //所属应用下的全部页面信息
+     *     currDataSource //当前属性数据源
      * }
      * @return {Array} 元数据数组集合 @link 请参考PageMeta说明
      */
     onPageMetas(options) {
-        return [
-            {
-                name: 'uikey',
-                label: '键值',
-                type: MetaType.Text,
-                props: {},
-                defaultValue: ''
-            },{
-                name: 'uititle',
-                label: '名称',
-                type: MetaType.Text,
-                props: {},
-                defaultValue: ''
-            }
-        ];
+        let {currDataSource} = options;
+        if(currDataSource){
+            return currDataSource;
+        }else{
+            return [
+                {
+                    name: 'uikey',
+                    label: '键值',
+                    type: MetaType.Text,
+                    props: {},
+                    defaultValue: ''
+                },{
+                    name: 'uititle',
+                    label: '名称',
+                    type: MetaType.Text,
+                    props: {},
+                    defaultValue: ''
+                }
+            ];
+        }
     }
 
     /**
@@ -76,6 +82,7 @@ export default class PropAdapter extends BaseDataAdapter{
     onDataToValue(options){
         let {formMeta,tplNode,tplTree} = options;
         let newFormData = {};
+        formMeta = formMeta||[];
         for(let i=0;i<formMeta.length;i++){
             let meta = formMeta[i];
             if(!meta)continue;
@@ -100,6 +107,7 @@ export default class PropAdapter extends BaseDataAdapter{
      */
     onValueToData(options){
         let {formMeta,formData,tplNode,tplTree,keepDefaultValue} = options;
+        formMeta = formMeta||[];
         for(let i=0;i<formMeta.length;i++) {
             let meta = formMeta[i];
             if(!meta)continue;
