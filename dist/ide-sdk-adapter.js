@@ -511,7 +511,8 @@ var PropAdapter = function (_BaseDataAdapter) {
          * @return {Array} 元数据数组集合 @link 请参考PageMeta说明
          */
         value: function onPageMetas(options) {
-            var currDataSource = options.currDataSource;
+            var _ref = options || {},
+                currDataSource = _ref.currDataSource;
 
             if (currDataSource) {
                 return currDataSource;
@@ -551,9 +552,10 @@ var PropAdapter = function (_BaseDataAdapter) {
     }, {
         key: 'onDataToValue',
         value: function onDataToValue(options) {
-            var formMeta = options.formMeta,
-                tplNode = options.tplNode,
-                tplTree = options.tplTree;
+            var _ref2 = options || {},
+                formMeta = _ref2.formMeta,
+                tplNode = _ref2.tplNode,
+                tplTree = _ref2.tplTree;
 
             var newFormData = {};
             formMeta = formMeta || [];
@@ -583,11 +585,12 @@ var PropAdapter = function (_BaseDataAdapter) {
     }, {
         key: 'onValueToData',
         value: function onValueToData(options) {
-            var formMeta = options.formMeta,
-                formData = options.formData,
-                tplNode = options.tplNode,
-                tplTree = options.tplTree,
-                keepDefaultValue = options.keepDefaultValue;
+            var _ref3 = options || {},
+                formMeta = _ref3.formMeta,
+                formData = _ref3.formData,
+                tplNode = _ref3.tplNode,
+                tplTree = _ref3.tplTree,
+                keepDefaultValue = _ref3.keepDefaultValue;
 
             formMeta = formMeta || [];
             for (var i = 0; i < formMeta.length; i++) {
@@ -1033,7 +1036,7 @@ var UiDefines = function () {
             this.UiTitle[primaryKey] = uititle;
             this.UiIcon[primaryKey] = uiicon;
             this.UiDefault[primaryKey] = uidefault;
-            this.UiIsView[primaryKey] = typeof uiisview == 'boolean' ? uiisview : true;
+            this.UiIsView[primaryKey] = typeof uiisview == 'boolean' ? uiisview : undefined;
         }
 
         /**
@@ -1180,7 +1183,8 @@ var GlobalAdapter = function (_SuperAdapter) {
   _createClass(GlobalAdapter, [{
     key: "onViewMenus",
     value: function onViewMenus(options) {
-      var currDataSource = options.currDataSource;
+      var _ref = options || {},
+          currDataSource = _ref.currDataSource;
 
       return currDataSource;
     }
@@ -1202,7 +1206,8 @@ var GlobalAdapter = function (_SuperAdapter) {
   }, {
     key: "onViewPanes",
     value: function onViewPanes(options) {
-      var currDataSource = options.currDataSource;
+      var _ref2 = options || {},
+          currDataSource = _ref2.currDataSource;
 
       return currDataSource;
     }
@@ -1245,7 +1250,8 @@ var GlobalAdapter = function (_SuperAdapter) {
   }, {
     key: "onUiSubset",
     value: function onUiSubset(options) {
-      var currDataSource = options.currDataSource;
+      var _ref3 = options || {},
+          currDataSource = _ref3.currDataSource;
 
       return currDataSource;
     }

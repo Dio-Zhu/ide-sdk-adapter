@@ -24,7 +24,7 @@ export default class UiDefines{
         this.UiTitle[primaryKey] = uititle;
         this.UiIcon[primaryKey] = uiicon;
         this.UiDefault[primaryKey] = uidefault;
-        this.UiIsView[primaryKey] = typeof uiisview == 'boolean'?uiisview:true;
+        this.UiIsView[primaryKey] = typeof uiisview == 'boolean'?uiisview:undefined;
     }
 
     /**
