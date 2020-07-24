@@ -44,7 +44,8 @@ export default class GlobalAdapter extends SuperAdapter{
      * {
      *   key:"",          //面板编码
      *   title:"基础",     //面板名称
-     *   url:''            //面板页面地址
+     *   url:''           //面板页面地址
+     *   type:''          //面板类型，"left"-左面板、"right"-右面板(默认)、"center"-中间面板
      * },
      * ...  //更多其它分组
      * ]
@@ -52,15 +53,6 @@ export default class GlobalAdapter extends SuperAdapter{
     onViewPanes(options){
         let {currDataSource} = options||{};
         return currDataSource;
-    }
-
-    /**
-     * 构建自定义页面
-     * @param options
-     * TODO
-     */
-    onViewPages(options){
-
     }
 
     /**

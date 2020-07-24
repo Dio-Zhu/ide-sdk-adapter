@@ -1040,6 +1040,25 @@ var UiDefines = function () {
         }
 
         /**
+         * 更新一个组件的定义
+         * @param uitype  {string}       必填，组件标识名（唯一）
+         * @param uititle {string}       必填，组件描述名
+         * @param uiicon  {string}       可选，组件图标
+         * @param uidefault {object}     可选，组件缺省属性
+         * @param uiisview  {boolean}    可选，组件是否为视图,默认true
+         */
+
+    }, {
+        key: 'set',
+        value: function set(uitype, uititle, uiicon, uidefault, uiisview) {
+            this.UiType[uitype] = uitype;
+            this.UiTitle[uitype] = uititle;
+            this.UiIcon[uitype] = uiicon;
+            this.UiDefault[uitype] = uidefault;
+            this.UiIsView[uitype] = typeof uiisview == 'boolean' ? uiisview : undefined;
+        }
+
+        /**
          * 移除一个组件的定义
          * @param primaryKey    主键标识
          */
