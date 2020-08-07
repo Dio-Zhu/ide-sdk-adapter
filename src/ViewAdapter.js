@@ -48,14 +48,27 @@ export default class ViewAdapter extends SuperAdapter{
      *      tplNode,     //当前数据节点对象
      *      tplChildNode //即将添加的子数据节点对象
      *   }
-     *   @return {Object} 校验元数据视图 @link 请参考ValidMeta说明
+     *  @return
+     * {
+     *   uititle: '消息提示内容',
+     *   uitype: 'message',
+     *   type: 'error|warning|info|success'
+     * }
      */
     onDataValid(options){}
 
     /**
      * 当数据节点被移除时的校验
-     * @param options
-     * TODO 待实现
+     * @param options:{
+     *     tplTree, //当前数据树
+     *     tplNode, //当前删除的节点
+     * }
+     * @return
+     * {
+     *   uititle: '消息内容',
+     *   uitype: 'message',
+     *   type: 'error|warning|info|success'
+     * }
      */
     onRemoveDataValid(options){}
 
@@ -69,7 +82,12 @@ export default class ViewAdapter extends SuperAdapter{
      *     tplTargetNode,//移动相对的目标节点
      *     position,     //移动相对目标节点的位置 "before|left|top"目标节点前、"after|right|top"目标节点后、"insert"目标节点里面
      *   }
-     *   @return {Object} 校验元数据视图 @link 请参考ValidMeta说明
+     * @return
+     * {
+     *   uititle: '消息内容',
+     *   uitype: 'message',
+     *   type: 'error|warning|info|success'
+     * }
      */
     onMoveDataValid(options){}
 
