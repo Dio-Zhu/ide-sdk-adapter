@@ -46,7 +46,9 @@ export default class ViewAdapter extends SuperAdapter{
      *  @param options:{
      *      tplTree,     //当前数据树
      *      tplNode,     //当前数据节点对象
-     *      tplChildNode //即将添加的子数据节点对象
+     *      tplChildNode, //即将添加的子数据节点对象
+     *      isPart, //UI部件
+     *      isExt   //UI扩展
      *   }
      *  @return
      * {

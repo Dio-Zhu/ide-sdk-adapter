@@ -351,7 +351,12 @@ var ViewAdapter = function (_SuperAdapter) {
      *      tplNode,     //当前数据节点对象
      *      tplChildNode //即将添加的子数据节点对象
      *   }
-     *   @return {Object} 校验元数据视图 @link 请参考ValidMeta说明
+     *  @return
+     * {
+     *   uititle: '消息提示内容',
+     *   uitype: 'message',
+     *   type: 'error|warning|info|success'
+     * }
      */
 
   }, {
@@ -360,8 +365,16 @@ var ViewAdapter = function (_SuperAdapter) {
 
     /**
      * 当数据节点被移除时的校验
-     * @param options
-     * TODO 待实现
+     * @param options:{
+     *     tplTree, //当前数据树
+     *     tplNode, //当前删除的节点
+     * }
+     * @return
+     * {
+     *   uititle: '消息内容',
+     *   uitype: 'message',
+     *   type: 'error|warning|info|success'
+     * }
      */
 
   }, {
@@ -378,7 +391,12 @@ var ViewAdapter = function (_SuperAdapter) {
      *     tplTargetNode,//移动相对的目标节点
      *     position,     //移动相对目标节点的位置 "before|left|top"目标节点前、"after|right|top"目标节点后、"insert"目标节点里面
      *   }
-     *   @return {Object} 校验元数据视图 @link 请参考ValidMeta说明
+     * @return
+     * {
+     *   uititle: '消息内容',
+     *   uitype: 'message',
+     *   type: 'error|warning|info|success'
+     * }
      */
 
   }, {
@@ -1216,7 +1234,8 @@ var GlobalAdapter = function (_SuperAdapter) {
      * {
      *   key:"",          //面板编码
      *   title:"基础",     //面板名称
-     *   url:''            //面板页面地址
+     *   url:''           //面板页面地址
+     *   type:''          //面板类型，"left"-左面板、"right"-右面板(默认)、"center"-中间面板
      * },
      * ...  //更多其它分组
      * ]
@@ -1230,16 +1249,6 @@ var GlobalAdapter = function (_SuperAdapter) {
 
       return currDataSource;
     }
-
-    /**
-     * 构建自定义页面
-     * @param options
-     * TODO
-     */
-
-  }, {
-    key: "onViewPages",
-    value: function onViewPages(options) {}
 
     /**
      * 解析需要显示的源码内容
@@ -1491,6 +1500,8 @@ var UiLibrary = function () {
         this.eventAdapters = {};
         this.viewAdapters = {};
         this.globalAdapter = null;
+        this.extPropAdapter = null; //扩展组件的PropAdapter
+        this.extViewAdapter = null; //扩展组件的ViewAdapter
     }
 
     /**
@@ -1712,7 +1723,6 @@ var UiLibrary = function () {
 
         /**
          * 获取全局适配器
-         * @param primaryKey
          * @return {*}
          */
         value: function getGlobalAdapter() {
@@ -1720,7 +1730,7 @@ var UiLibrary = function () {
         }
         /**
          * 设置全局适配器
-         * @param primaryKey
+         * @param globalAdapterClass
          * @return {*}
          */
 
@@ -1731,10 +1741,68 @@ var UiLibrary = function () {
                 var adapter = new globalAdapterClass();
                 if (adapter instanceof _GlobalAdapter2.default) {
                     this.globalAdapter = adapter;
-                    return;
+                } else {
+                    console.warn('setGlobalAdapter fail ,that is not GlobalAdapter class!');
                 }
             }
-            console.warn('setGlobalAdapter fail ,that is not GlobalAdapter class!');
+        }
+
+        /**
+         * 获取扩展组件的属性适配器
+         * @return {*}
+         */
+
+    }, {
+        key: "getExtPropAdapter",
+        value: function getExtPropAdapter() {
+            return this.extPropAdapter;
+        }
+        /**
+         * 设置扩展组件的属性适配器
+         * @param propAdapterClass
+         * @return {*}
+         */
+
+    }, {
+        key: "setExtPropAdapter",
+        value: function setExtPropAdapter(propAdapterClass) {
+            if (typeof propAdapterClass == 'function') {
+                var adapter = new propAdapterClass();
+                if (adapter instanceof _PropAdapter2.default) {
+                    this.extPropAdapter = adapter;
+                } else {
+                    console.warn('setExtPropAdapter fail ,that is not PropAdapter class!');
+                }
+            }
+        }
+
+        /**
+         * 获取扩展组件的视图适配器
+         * @return {*}
+         */
+
+    }, {
+        key: "getExtViewAdapter",
+        value: function getExtViewAdapter() {
+            return this.extViewAdapter;
+        }
+        /**
+         * 设置扩展组件的视图适配器
+         * @param viewAdapterClass
+         * @return {*}
+         */
+
+    }, {
+        key: "setExtViewAdapter",
+        value: function setExtViewAdapter(viewAdapterClass) {
+            if (typeof viewAdapterClass == 'function') {
+                var adapter = new viewAdapterClass();
+                if (adapter instanceof _ViewAdapter2.default) {
+                    this.extViewAdapter = adapter;
+                } else {
+                    console.warn('setExtViewAdapter fail ,that is not ViewAdapter class!');
+                }
+            }
         }
     }, {
         key: "PropAdapters",

@@ -20,6 +20,8 @@ export default class UiLibrary{
         this.eventAdapters = {};
         this.viewAdapters = {};
         this.globalAdapter = null;
+        this.extPropAdapter = null;//扩展组件的PropAdapter
+        this.extViewAdapter = null;//扩展组件的ViewAdapter
     }
 
     /**
@@ -220,7 +222,6 @@ export default class UiLibrary{
 
     /**
      * 获取全局适配器
-     * @param primaryKey
      * @return {*}
      */
     getGlobalAdapter(){
@@ -228,7 +229,7 @@ export default class UiLibrary{
     }
     /**
      * 设置全局适配器
-     * @param primaryKey
+     * @param globalAdapterClass
      * @return {*}
      */
     setGlobalAdapter(globalAdapterClass){
@@ -236,9 +237,57 @@ export default class UiLibrary{
             let adapter = new globalAdapterClass();
             if(adapter instanceof GlobalAdapter){
                 this.globalAdapter = adapter;
-                return;
+            }else{
+                console.warn('setGlobalAdapter fail ,that is not GlobalAdapter class!');
             }
         }
-        console.warn('setGlobalAdapter fail ,that is not GlobalAdapter class!');
+    }
+
+
+    /**
+     * 获取扩展组件的属性适配器
+     * @return {*}
+     */
+    getExtPropAdapter(){
+        return this.extPropAdapter;
+    }
+    /**
+     * 设置扩展组件的属性适配器
+     * @param propAdapterClass
+     * @return {*}
+     */
+    setExtPropAdapter(propAdapterClass){
+        if(typeof propAdapterClass == 'function') {
+            let adapter = new propAdapterClass();
+            if(adapter instanceof PropAdapter){
+                this.extPropAdapter = adapter;
+            }else{
+                console.warn('setExtPropAdapter fail ,that is not PropAdapter class!');
+            }
+        }
+
+    }
+
+    /**
+     * 获取扩展组件的视图适配器
+     * @return {*}
+     */
+    getExtViewAdapter(){
+        return this.extViewAdapter;
+    }
+    /**
+     * 设置扩展组件的视图适配器
+     * @param viewAdapterClass
+     * @return {*}
+     */
+    setExtViewAdapter(viewAdapterClass){
+        if(typeof viewAdapterClass == 'function') {
+            let adapter = new viewAdapterClass();
+            if(adapter instanceof ViewAdapter){
+                this.extViewAdapter = adapter;
+            }else{
+                console.warn('setExtViewAdapter fail ,that is not ViewAdapter class!');
+            }
+        }
     }
 }
