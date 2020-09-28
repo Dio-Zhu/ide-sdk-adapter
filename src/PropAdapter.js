@@ -70,8 +70,7 @@ export default class PropAdapter extends BaseDataAdapter{
      * @param options {无}
      * @return {object} 适配页面的属性 @link 请参考PageProp说明
      */
-    onPageProps(options) {
-    }
+    onPageProps(options) {}
 
 
     /**

@@ -90,6 +90,16 @@ export default class GlobalAdapter extends SuperAdapter{
      * {
      *     currApp:object //当前应用信息
      * }
+     * @return array
+     * 格式要求：
+     * [
+     *  {
+     *      name: '自定义页面',//页面类型名称
+     *      code: 'FreeView',//页面类型编码
+     *      isDefault:true  //是否默认选择
+     *  }
+     *  //更多页面类型
+     * ]
      */
     onPageTypes(options){
 

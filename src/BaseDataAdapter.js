@@ -38,8 +38,7 @@ export default class BaseDataAdapter extends SuperAdapter{
      *   }
      *   @return {无}
      */
-    onCreateData(options) {
-    }
+    onCreateData(options) {}
 
     /**
      * @desc 数据节点位置变更时触发
@@ -56,21 +55,18 @@ export default class BaseDataAdapter extends SuperAdapter{
      *     forTargetParams//拖拽创建时目标dom节点为fornid属性的uiparams属性值
      * }
      */
-    onMoveData(options){
-
-    }
+    onMoveData(options){}
 
     /**
      * @desc 数据节点被删除/移除时触发
      * @param options
      * {
+     *     tplSourceTree,//节点删除前的数据树
      *     tplTree, //节点删除后的数据树
      *     tplNode, //被删除的节点
      * }
      */
-    onDeleteData(options){
-
-    }
+    onDeleteData(options){}
 
     /**
      * @desc 将数据转换为配置值
@@ -85,8 +81,7 @@ export default class BaseDataAdapter extends SuperAdapter{
      * }
      * @return {object} 适配页面的表单值
      */
-    onDataToValue(options) {
-    }
+    onDataToValue(options) {}
 
     /**
      * @desc 将配置值转换为数据
@@ -103,6 +98,5 @@ export default class BaseDataAdapter extends SuperAdapter{
      * }
      * @return {无}
      */
-    onValueToData(options) {
-    }
+    onValueToData(options) {}
 }

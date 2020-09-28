@@ -349,7 +349,9 @@ var ViewAdapter = function (_SuperAdapter) {
      *  @param options:{
      *      tplTree,     //当前数据树
      *      tplNode,     //当前数据节点对象
-     *      tplChildNode //即将添加的子数据节点对象
+     *      tplChildNode, //即将添加的子数据节点对象
+     *      isPart, //UI部件
+     *      isExt   //UI扩展
      *   }
      *  @return
      * {
@@ -1267,8 +1269,11 @@ var GlobalAdapter = function (_SuperAdapter) {
      * 获取当前组件可用的子组件类型
      * @param options
      * {
-     *  tplNode,
-     *  currDataSource
+     *  tplNode,//当前父组件
+     *  tplChildNode,//当前子组件
+     *  currDataSource,//当前配置数据
+     *  isPart,//是否ui部件
+     *  isExt //是否ui扩展
      * }
      * @return array
      * 格式要求：
