@@ -27,6 +27,7 @@ export default class ViewAdapter extends SuperAdapter{
      * @desc 构建数据节点的显示视图
      * @param options
      * {
+     *     sceneData, //当前场景数据
      *     tplNode,     //当前数据节点对象
      *     tplTree,     //当前数据树
      * }
@@ -44,6 +45,7 @@ export default class ViewAdapter extends SuperAdapter{
     /**
      *  @desc 当前数据节点下添加子数据节点时的校验
      *  @param options:{
+     *      sceneData, //当前场景数据
      *      tplTree,     //当前数据树
      *      tplNode,     //当前数据节点对象
      *      tplChildNode, //即将添加的子数据节点对象
@@ -62,6 +64,7 @@ export default class ViewAdapter extends SuperAdapter{
     /**
      * 当数据节点被移除时的校验
      * @param options:{
+     *     sceneData, //当前场景数据
      *     tplTree, //当前数据树
      *     tplNode, //当前删除的节点
      * }
@@ -77,6 +80,7 @@ export default class ViewAdapter extends SuperAdapter{
     /**
      *  @desc 当前数据节点下添加子数据节点时的校验
      *  @param options:{
+     *     sceneData, //当前场景数据
      *     tplTree, //当前数据树
      *     tplNode, //当前移动的节点
      *     tplParentNode,//移动前的父节点
@@ -96,6 +100,7 @@ export default class ViewAdapter extends SuperAdapter{
     /**
      * 当数据节点被选择时构建拖拽相关的视图
      *  @param options:{
+     *      sceneData, //当前场景数据
      *      tplTree,     //当前数据树
      *      tplNode,     //当前数据节点对象
      *      tplParentNode //当前数据节点父对象
@@ -116,6 +121,7 @@ export default class ViewAdapter extends SuperAdapter{
      * 当数据节点触发动作事件时（例如：扩展按钮点击时）
      * @param options
      * {
+     *     sceneData, //当前场景数据
      *     tplTree,     //当前数据树
      *     tplNode,     //当前数据节点对象
      *     actionType,  //动作类型

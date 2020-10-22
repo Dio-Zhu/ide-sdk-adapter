@@ -32,6 +32,7 @@ export default class PropAdapter extends BaseDataAdapter{
      * @desc 构建适配页面(元数据)
      * @param options
      * {
+     *     sceneData, //当前场景数据
      *     tplNode,     //当前数据节点值
      *     tplTree,     //当前数据树
      *     productType, //所属产品类型
@@ -66,6 +67,8 @@ export default class PropAdapter extends BaseDataAdapter{
     }
 
     /**
+     * @deprecated
+     * 以后将移除
      * @desc 构建适配页面(属性)
      * @param options {无}
      * @return {object} 适配页面的属性 @link 请参考PageProp说明

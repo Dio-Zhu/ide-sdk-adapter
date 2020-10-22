@@ -29,6 +29,7 @@ export default class BaseDataAdapter extends SuperAdapter{
     /**
      *  @desc 新建数据节点时触发
      *  @param options:{
+     *      sceneData, //当前场景数据
      *      tplTree,        //当前数据树
      *      tplNode,        //当前添加的数据节点对象
      *      tplParentNode,   //当前对应的父节点对象
@@ -44,6 +45,7 @@ export default class BaseDataAdapter extends SuperAdapter{
      * @desc 数据节点位置变更时触发
      * @param options
      * {
+     *     sceneData, //当前场景数据
      *     tplTree, //移动后的数据树
      *     tplNode, //移动后的节点
      *     tplParentNode,//移动后的父节点
@@ -61,6 +63,7 @@ export default class BaseDataAdapter extends SuperAdapter{
      * @desc 数据节点被删除/移除时触发
      * @param options
      * {
+     *     sceneData, //当前场景数据
      *     tplSourceTree,//节点删除前的数据树
      *     tplTree, //节点删除后的数据树
      *     tplNode, //被删除的节点
@@ -71,6 +74,7 @@ export default class BaseDataAdapter extends SuperAdapter{
     /**
      * @desc 将数据转换为配置值
      * @param options {
+     *     sceneData, //当前场景数据
      *     formMeta,    //元数据，即 @link onPageMetas 返回的数据
      *     tplNode,     //当前数据节点对象
      *     tplTree,     //当前数据树
@@ -86,6 +90,7 @@ export default class BaseDataAdapter extends SuperAdapter{
     /**
      * @desc 将配置值转换为数据
      * @param options {
+     *     sceneData, //当前场景数据
      *     formMeta,    //元数据，即 @link onPageMetas 返回的数据
      *     formData,    //变更后的配置值
      *     tplPreNode,  //上一次的数据值

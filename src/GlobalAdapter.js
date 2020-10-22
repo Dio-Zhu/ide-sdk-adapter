@@ -11,6 +11,7 @@ export default class GlobalAdapter extends SuperAdapter{
      * 构建组件的分组选择菜单列表
      * @param options
      * {
+     *     sceneData, //当前场景数据
      *     currDataSource:[]//当前数据源
      * }
      * @return array 返回数据格式要求如下：
@@ -39,6 +40,9 @@ export default class GlobalAdapter extends SuperAdapter{
     /**
      * 构建自定义配置面板
      * @param options
+     * {
+     *     sceneData, //当前场景数据
+     * }
      * @return array 返回数据格式要求如下：
      * [
      * {
@@ -56,6 +60,8 @@ export default class GlobalAdapter extends SuperAdapter{
     }
 
     /**
+     * @deprecated
+     * 后期将移除
      * 解析需要显示的源码内容
      * @param options
      * {
@@ -69,6 +75,7 @@ export default class GlobalAdapter extends SuperAdapter{
      * 获取当前组件可用的子组件类型
      * @param options
      * {
+     *  sceneData, //当前场景数据
      *  tplNode,//当前父组件
      *  tplChildNode,//当前子组件
      *  currDataSource,//当前配置数据
@@ -107,6 +114,9 @@ export default class GlobalAdapter extends SuperAdapter{
     /**
      * 新建页面时的触发的生命周期,主要用于处理缺省的页面节点数据
      * @param options
+     * {
+     *     sceneData, //当前场景数据
+     * }
      */
     onDefaultPageData(options){
 
@@ -114,7 +124,11 @@ export default class GlobalAdapter extends SuperAdapter{
 
     /**
      * 页面数据保存时触发的生命周期
-     * @param options {tplTree}
+     * @param options
+     * {
+     *     sceneData, //当前场景数据
+     *     tplTree
+     * }
      */
     onSaveData(options){
 
@@ -123,6 +137,7 @@ export default class GlobalAdapter extends SuperAdapter{
     /**
      *  @desc 新数据节点创建完成后触发
      *  @param options:{
+     *      sceneData, //当前场景数据
      *      tplTree,        //当前数据树
      *      tplNode,        //当前添加的数据节点对象
      *      tplParentNode,   //当前对应的父节点对象
@@ -137,6 +152,7 @@ export default class GlobalAdapter extends SuperAdapter{
     /**
      * 获取页面可用的扩展按钮
      * @param options:{
+     *     sceneData, //当前场景数据
      *     currApp,//当前应用
      *     currPage//当前页面
      * }
@@ -158,23 +174,9 @@ export default class GlobalAdapter extends SuperAdapter{
     }
 
     /**
-     * 获取当前组件可用的拖拽扩展按钮
-     * @param options
-     * @return 要求返回的结果格式如下：
-     * [
-     *      {
-     *          key:''
-     *          text:'',
-     *          icon:''
-     *      }
-     * ]
-     */
-    onDndButtons(options){
-    }
-
-    /**
      * 获取当前的配置信息
      * @param options:{
+     *     sceneData, //当前场景数据
      *     tplTree, //当前树数据
      *     tplNode, //当前选中节点
      *     config,  //当前全部配置项的默认值
