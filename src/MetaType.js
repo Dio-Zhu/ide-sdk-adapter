@@ -43,6 +43,10 @@ module.exports = {
      */
     Textarea:'Textarea',
     /**
+     * 多语文本
+     */
+    MultiLang:'MultiLang',
+    /**
      * JSON编辑器
      */
     Json:'Json',
